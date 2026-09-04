@@ -1,0 +1,392 @@
+{
+  "metadata": {
+    "company": "LTIMindtree Limited",
+    "ticker": "LTIM",
+    "fiscal_years": ["FY2022-23", "FY2023-24", "FY2024-25"],
+    "created": "2026-09-04",
+    "description": "Golden evaluation dataset for LTIMindtree GraphRAG. All ground truth derived from actual Neo4j graph and source data files.",
+    "total_questions": 30
+  },
+  "questions": [
+    {
+      "id": "q001",
+      "question": "What was LTIM's EBITDA?",
+      "category": "financial_fact",
+      "expected": {
+        "metric": "ebitda",
+        "facts": [
+          {"value": 61077, "unit": "INR million", "period": "FY2022-23"},
+          {"value": 63874, "unit": "INR million", "period": "FY2023-24"},
+          {"value": 64949, "unit": "INR million", "period": "FY2024-25"}
+        ]
+      }
+    },
+    {
+      "id": "q002",
+      "question": "What was LTIM's EBITDA margin in FY2024-25?",
+      "category": "financial_fact",
+      "expected": {
+        "metric": "ebitda_margin",
+        "value": 17.1,
+        "unit": "%",
+        "period": "FY2024-25"
+      }
+    },
+    {
+      "id": "q003",
+      "question": "What was LTIM's revenue?",
+      "category": "financial_fact",
+      "expected": {
+        "metric": "revenue",
+        "facts": [
+          {"value": 331830, "unit": "INR million", "period": "FY2022-23"},
+          {"value": 355170, "unit": "INR million", "period": "FY2023-24"},
+          {"value": 380081, "unit": "INR million", "period": "FY2024-25"}
+        ]
+      }
+    },
+    {
+      "id": "q004",
+      "question": "How many employees did LTIM have in FY2024-25?",
+      "category": "financial_fact",
+      "expected": {
+        "metric": "employees",
+        "value": 84307,
+        "unit": "employees",
+        "period": "FY2024-25"
+      }
+    },
+    {
+      "id": "q005",
+      "question": "What was the diluted EPS in FY2023-24?",
+      "category": "financial_fact",
+      "expected": {
+        "metric": "eps_diluted",
+        "value": 154.48,
+        "unit": "INR per share",
+        "period": "FY2023-24"
+      }
+    },
+    {
+      "id": "q006",
+      "question": "Which program drives cost optimization?",
+      "category": "entity_graph",
+      "expected": {
+        "detected_metric": null,
+        "expected_entities": ["Fit4Future", "cost optimization"],
+        "expected_relationships": ["DRIVES"]
+      }
+    },
+    {
+      "id": "q007",
+      "question": "How does cost optimization affect EBITDA margin?",
+      "category": "multi_hop_graph",
+      "expected": {
+        "detected_metric": "ebitda_margin",
+        "expected_entities": ["cost optimization", "operational efficiency"],
+        "expected_relationships": ["IMPROVES", "SUPPORTS", "DRIVES"],
+        "expected_path": [
+          "cost optimization",
+          "operational efficiency",
+          "ebitda_margin"
+        ],
+        "path_length_hops": 2
+      }
+    },
+    {
+      "id": "q008",
+      "question": "Which entities support AI platforms?",
+      "category": "entity_graph",
+      "expected": {
+        "detected_metric": null,
+        "expected_entities": ["ecosystem partnerships", "capability building"],
+        "expected_relationships": ["SUPPORTS"]
+      }
+    },
+    {
+      "id": "q009",
+      "question": "How does Fit4Future connect to operational efficiency?",
+      "category": "single_hop_graph",
+      "expected": {
+        "detected_metric": null,
+        "expected_entities": ["Fit4Future", "operational efficiency", "cost optimization"],
+        "expected_relationships": ["DRIVES", "IMPROVES"],
+        "expected_paths_to_check": [
+          ["Fit4Future", "operational efficiency"],
+          ["Fit4Future", "cost optimization", "operational efficiency"]
+        ]
+      }
+    },
+    {
+      "id": "q010",
+      "question": "What financial metric is associated with operational efficiency?",
+      "category": "single_hop_graph",
+      "expected": {
+        "detected_metric": "ebitda_margin",
+        "expected_entities": ["operational efficiency"],
+        "expected_relationships": ["SUPPORTS"],
+        "expected_path": [
+          "operational efficiency",
+          "ebitda_margin"
+        ]
+      }
+    },
+    {
+      "id": "q011",
+      "question": "Starting from Fit4Future, trace the path to EBITDA margin.",
+      "category": "multi_hop_graph",
+      "expected": {
+        "detected_metric": "ebitda_margin",
+        "expected_entities": ["Fit4Future", "cost optimization", "operational efficiency"],
+        "expected_relationships": ["DRIVES", "IMPROVES", "SUPPORTS"],
+        "expected_path": [
+          "Fit4Future",
+          "cost optimization",
+          "operational efficiency",
+          "ebitda_margin"
+        ],
+        "path_length_hops": 3
+      }
+    },
+    {
+      "id": "q012",
+      "question": "Starting from LTM's Fit4Future program, trace every available graph relationship that can eventually reach EBITDA margin.",
+      "category": "multi_hop_graph",
+      "expected": {
+        "detected_metric": "ebitda_margin",
+        "expected_entities": ["Fit4Future", "cost optimization", "operational efficiency"],
+        "expected_relationships": ["DRIVES", "IMPROVES", "SUPPORTS"],
+        "expected_paths": [
+          ["Fit4Future", "cost optimization", "operational efficiency", "ebitda_margin"],
+          ["Fit4Future", "operational efficiency", "ebitda_margin"]
+        ],
+        "path_length_hops": 3
+      }
+    },
+    {
+      "id": "q013",
+      "question": "How does inflation impact EBITDA margin?",
+      "category": "single_hop_graph",
+      "expected": {
+        "detected_metric": "ebitda_margin",
+        "expected_entities": ["inflation"],
+        "expected_relationships": ["IMPACTS"],
+        "expected_path": [
+          "inflation",
+          "ebitda_margin"
+        ]
+      }
+    },
+    {
+      "id": "q014",
+      "question": "What connects the Large Deals program to revenue?",
+      "category": "entity_graph",
+      "expected": {
+        "detected_metric": "revenue",
+        "expected_entities": ["Large Deals program"],
+        "expected_relationships": ["DRIVES"]
+      }
+    },
+    {
+      "id": "q015",
+      "question": "How does quality engineering contribute to cost optimization?",
+      "category": "single_hop_graph",
+      "expected": {
+        "detected_metric": null,
+        "expected_entities": ["quality engineering", "cost optimization"],
+        "expected_relationships": ["CONTRIBUTES_TO"],
+        "expected_path": [
+          "quality engineering",
+          "cost optimization"
+        ]
+      }
+    },
+    {
+      "id": "q016",
+      "question": "What does the GenAI initiative support?",
+      "category": "entity_graph",
+      "expected": {
+        "detected_metric": null,
+        "expected_entities": ["GenAI initiative", "productivity"],
+        "expected_relationships": ["SUPPORTS"]
+      }
+    },
+    {
+      "id": "q017",
+      "question": "What is the relationship between AI and cost optimization?",
+      "category": "single_hop_graph",
+      "expected": {
+        "detected_metric": null,
+        "expected_entities": ["AI", "cost optimization"],
+        "expected_relationships": ["SUPPORTS"],
+        "expected_path": [
+          "AI",
+          "cost optimization"
+        ]
+      }
+    },
+    {
+      "id": "q018",
+      "question": "How does pyramid optimization affect EBITDA margin?",
+      "category": "multi_hop_graph",
+      "expected": {
+        "detected_metric": "ebitda_margin",
+        "expected_entities": ["pyramid optimization", "operating leverage"],
+        "expected_relationships": ["IMPROVES", "SUPPORTS"],
+        "expected_path": [
+          "pyramid optimization",
+          "operating leverage",
+          "ebitda_margin"
+        ],
+        "path_length_hops": 2
+      }
+    },
+    {
+      "id": "q019",
+      "question": "How does Fit4Future indirectly connect to EBITDA margin through cost optimization and operational efficiency?",
+      "category": "multi_hop_graph",
+      "expected": {
+        "detected_metric": "ebitda_margin",
+        "expected_entities": ["Fit4Future", "cost optimization", "operational efficiency"],
+        "expected_relationships": ["DRIVES", "IMPROVES", "SUPPORTS"],
+        "expected_path": [
+          "Fit4Future",
+          "cost optimization",
+          "operational efficiency",
+          "ebitda_margin"
+        ],
+        "path_length_hops": 3
+      }
+    },
+    {
+      "id": "q020",
+      "question": "Which strategic program is connected to cost optimization, and through what chain does this eventually connect to EBITDA margin?",
+      "category": "multi_hop_graph",
+      "expected": {
+        "detected_metric": "ebitda_margin",
+        "expected_entities": ["Fit4Future", "cost optimization", "operational efficiency"],
+        "expected_relationships": ["DRIVES", "IMPROVES", "SUPPORTS"],
+        "expected_path": [
+          "Fit4Future",
+          "cost optimization",
+          "operational efficiency",
+          "ebitda_margin"
+        ],
+        "path_length_hops": 3
+      }
+    },
+    {
+      "id": "q021",
+      "question": "What was LTIM's revenue in FY2024-25?",
+      "category": "financial_fact",
+      "expected": {
+        "metric": "revenue",
+        "value": 380081,
+        "unit": "INR million",
+        "period": "FY2024-25"
+      }
+    },
+    {
+      "id": "q022",
+      "question": "What was the profit after tax in FY2023-24?",
+      "category": "financial_fact",
+      "expected": {
+        "metric": "profit_after_tax",
+        "value": 45846,
+        "unit": "INR million",
+        "period": "FY2023-24"
+      }
+    },
+    {
+      "id": "q023",
+      "question": "What is the relationship between AI and digital transformation?",
+      "category": "single_hop_graph",
+      "expected": {
+        "detected_metric": null,
+        "expected_entities": ["AI", "digital transformation"],
+        "expected_relationships": ["SUPPORTS"],
+        "expected_path": [
+          "AI",
+          "digital transformation"
+        ]
+      }
+    },
+    {
+      "id": "q024",
+      "question": "What was LTIM's EBITDA margin in FY2022?",
+      "category": "negative",
+      "expected": {
+        "answerable": false,
+        "reason": "FY2022 is not a valid fiscal year label; the closest is FY2022-23"
+      }
+    },
+    {
+      "id": "q025",
+      "question": "What was LTIM's revenue in FY2020?",
+      "category": "negative",
+      "expected": {
+        "answerable": false,
+        "reason": "FY2020 data is not available in the dataset; only FY2022-23 through FY2024-25 are covered"
+      }
+    },
+    {
+      "id": "q026",
+      "question": "What relationship exists between Fit4Future and market capitalization?",
+      "category": "negative",
+      "expected": {
+        "answerable": false,
+        "reason": "No graph path exists from Fit4Future to market_capitalization in the Neo4j graph"
+      }
+    },
+    {
+      "id": "q027",
+      "question": "How does New Horizons relate to Fit4Future?",
+      "category": "single_hop_graph",
+      "expected": {
+        "detected_metric": null,
+        "expected_entities": ["New Horizons", "Fit4Future"],
+        "expected_relationships": ["FOLLOWS"],
+        "expected_path": [
+          "New Horizons",
+          "Fit4Future"
+        ]
+      }
+    },
+    {
+      "id": "q028",
+      "question": "How does currency risk affect revenue growth?",
+      "category": "single_hop_graph",
+      "expected": {
+        "detected_metric": null,
+        "expected_entities": ["currency risk"],
+        "expected_relationships": ["IMPACTS"],
+        "expected_path": [
+          "currency risk",
+          "revenue_growth_usd"
+        ]
+      }
+    },
+    {
+      "id": "q029",
+      "question": "What was the ROE in FY2022-23?",
+      "category": "financial_fact",
+      "expected": {
+        "metric": "return_on_equity",
+        "value": 28.6,
+        "unit": "%",
+        "period": "FY2022-23"
+      }
+    },
+    {
+      "id": "q030",
+      "question": "What was the order inflow in FY2024-25?",
+      "category": "financial_fact",
+      "expected": {
+        "metric": "order_inflow_usd_bn",
+        "value": 5.99,
+        "unit": "USD billion",
+        "period": "FY2024-25"
+      }
+    }
+  ]
+}

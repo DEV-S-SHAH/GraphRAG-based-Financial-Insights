@@ -1,0 +1,9 @@
+fitz # PyMuPDF - PDF text extraction
+neo4j>=5.0
+streamlit>=1.30
+requests>=2.31
+python-dotenv>=1.0
+pytest>=7.0
+faiss-cpu>=1.7
+numpy>=1.25
+pandas>=2.0

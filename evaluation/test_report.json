@@ -1,0 +1,550 @@
+[
+  {
+    "id": "S01",
+    "category": "synthesis",
+    "question": "Which fiscal year had the best EBITDA margin and why might that be?",
+    "answer": "For the question \"Which fiscal year had the best EBITDA margin and why might that be?\", based on the available fiscal year data:\n\nThe EBITDA margins for the available fiscal years are as follows:\n- FY2022-23: 18.4%\n- FY2023-24: 18.0%\n- FY2024-25: 17.1%\n- FY2025-26: 17.9%\n\nThe highest EBITDA margin was observed in FY2022-23 at 18.4%. This year saw the best EBITDA margin among the available fiscal years.\n\nAs for the reason for this high margin, the annual report does not provide specific insights or explanations in the DOCUMENT EVIDENCE for FY2022-23. It merely mentions the EBITDA margin in the Message from Senior Leadership section on page 12.\n\nTherefore, based on the provided financial data, FY2022-23 had the best EBITDA margin, which was 18.4%, and the reasons for this margin are not detailed in the available annual report documents.",
+    "question_type": "financial",
+    "fiscal_year_context": {},
+    "graph_facts": 4,
+    "graph_entities": 0,
+    "graph_paths": 0,
+    "vector_chunks": 0,
+    "time_s": 2.8,
+    "error": null,
+    "assessment": {
+      "checks": [
+        [
+          "mentions_financial_metric",
+          true
+        ],
+        [
+          "mentions_years",
+          true
+        ],
+        [
+          "has_some_values",
+          true
+        ],
+        [
+          "has_reasoning",
+          false
+        ],
+        [
+          "no_hallucination",
+          true
+        ]
+      ],
+      "passed": 4,
+      "total": 5,
+      "score": 80
+    }
+  },
+  {
+    "id": "S02",
+    "category": "synthesis",
+    "question": "Is LTIMindtree's profitability improving or declining over the three years?",
+    "answer": "Not enough evidence. The provided context does not contain any financial facts or narrative passages from the annual report. Therefore, I cannot determine whether LTIMindtree's profitability is improving or declining over the three years based on the available information.",
+    "question_type": "financial",
+    "fiscal_year_context": {},
+    "graph_facts": 4,
+    "graph_entities": 0,
+    "graph_paths": 0,
+    "vector_chunks": 0,
+    "time_s": 0.7,
+    "error": null,
+    "assessment": {
+      "checks": [
+        [
+          "mentions_financial_metric",
+          true
+        ],
+        [
+          "mentions_years",
+          false
+        ],
+        [
+          "has_some_values",
+          false
+        ],
+        [
+          "has_reasoning",
+          true
+        ],
+        [
+          "no_hallucination",
+          true
+        ]
+      ],
+      "passed": 3,
+      "total": 5,
+      "score": 60
+    }
+  },
+  {
+    "id": "S03",
+    "category": "synthesis",
+    "question": "How does revenue growth compare to employee headcount growth?",
+    "answer": "To compare revenue growth to employee headcount growth, we need to extract the relevant data from the provided DOCUMENT EVIDENCE.\n\nFrom the DOCUMENT EVIDENCE on page 76, we can see the following data:\n\n**Revenue Growth:**\n- FY2024-25 (revenue = 355,170 INR million)\n- FY2023-24 (revenue = 331,830 INR million)\n\n**Employee Headcount Growth:**\n- FY2023-24 (number of permanent employees = 84,113)\n- FY2022-23 (number of permanent employees = 43,924)\n\nFrom the information provided, we can calculate the percentage increase in revenue and employee headcount:\n\n**Revenue Growth Calculation:**\n- Revenue increase from FY2022-23 to FY2023-24: \\( \\frac{331,830 - 355,170}{355,170} \\times 100 = -7.02\\% \\)\n- Revenue increase from FY2023-24 to FY2024-25: \\( \\frac{355,170 - 331,830}{331,830} \\times 100 = 6.81\\% \\)\n\n**Employee Headcount Growth Calculation:**\n- Increase in employee headcount from FY2022-23 to FY2023-24: \\( \\frac{84,113 - 43,924}{43,924} \\times 100 = 91.64\\% \\)\n\n**Comparison:**\n- Revenue grew by 6.81% from FY2023-24 to FY2024-25.\n- Employee headcount grew by 91.64% from FY2022-23 to FY2023-24.\n\nIn summary, the revenue growth (6.81%) was less than the employee headcount growth (91.64%) between the fiscal years FY2023-24 and FY2024-25.",
+    "question_type": "graph",
+    "fiscal_year_context": {},
+    "graph_facts": 4,
+    "graph_entities": 0,
+    "graph_paths": 0,
+    "vector_chunks": 5,
+    "time_s": 6.3,
+    "error": null,
+    "assessment": {
+      "checks": [
+        [
+          "mentions_financial_metric",
+          true
+        ],
+        [
+          "mentions_years",
+          true
+        ],
+        [
+          "has_some_values",
+          true
+        ],
+        [
+          "has_reasoning",
+          true
+        ],
+        [
+          "no_hallucination",
+          true
+        ]
+      ],
+      "passed": 5,
+      "total": 5,
+      "score": 100
+    }
+  },
+  {
+    "id": "G01",
+    "category": "graph_reasoning",
+    "question": "How does inflation indirectly reach EBITDA margin through the entity graph?",
+    "answer": "The inflation indirectly reaches the EBITDA margin through the entity graph, as described in the DOCUMENT EVIDENCE section. The annual report notes that the global economy is facing a landscape of modest growth and declining inflation amid policy uncertainties and structural challenges. The report mentions that the global growth is projected at 3.3% for both 2025 and 2026, below the historical average of 3.7%. Global headline inflation is expected to decline to 4.2% in 2025 and to 3.5% in 2026, with advanced economies expected to reach their inflation targets earlier than emerging markets.\n\nIndia is also noted to have a steady inflation rate of 6.5%, as stated on page 60 of the annual report. The document highlights geopolitical disruptions such as the Russia-Ukraine conflict and resultant volatility in the global economy may adversely affect the outlook, causing inflation. This in turn can result in reduced revenue growth opportunities that can impact client spend and increase the cost of doing business. \n\nThe report emphasizes that macro-economic parameters such as GDP growth, interest rate, and inflation are tracked to identify uncertainties in economic conditions, which may impact the countries in which LTIMindtree operates. The diversified revenue mix across different geographies and domains helps to mitigate this risk. \n\nThe document also mentions that the Russia-Ukraine conflict and related volatility may cause inflation, which can lead to reduced revenue growth opportunities and increased costs. Therefore, inflation impacts cost optimization, which in turn impacts EBITDA margin. \n\nWhile the document does not provide specific quantitative evidence linking inflation to EBITDA margin, it provides a comprehensive narrative that outlines the indirect connection between these entities.",
+    "question_type": "graph",
+    "fiscal_year_context": {},
+    "graph_facts": 4,
+    "graph_entities": 1,
+    "graph_paths": 2,
+    "vector_chunks": 5,
+    "time_s": 4.5,
+    "error": null,
+    "assessment": {
+      "checks": [
+        [
+          "mentions_entities",
+          true
+        ],
+        [
+          "describes_path",
+          true
+        ],
+        [
+          "distinguishes_evidence",
+          true
+        ],
+        [
+          "no_causation_claim",
+          true
+        ]
+      ],
+      "passed": 4,
+      "total": 4,
+      "score": 100
+    }
+  },
+  {
+    "id": "G02",
+    "category": "graph_reasoning",
+    "question": "What is the longest chain from AI to a financial metric?",
+    "answer": "The longest chain from AI to a financial metric in the provided context is AI --[ENABLES]--> Large Deals program --[DRIVES]--> revenue. This chain shows an indirect connection through multiple steps, where AI supports large deals programs, which in turn drive revenue growth. However, there are no direct financial metrics provided for AI or revenue in the given evidence.",
+    "question_type": "graph",
+    "fiscal_year_context": {},
+    "graph_facts": 0,
+    "graph_entities": 1,
+    "graph_paths": 6,
+    "vector_chunks": 5,
+    "time_s": 1.6,
+    "error": null,
+    "assessment": {
+      "checks": [
+        [
+          "mentions_entities",
+          true
+        ],
+        [
+          "describes_path",
+          true
+        ],
+        [
+          "distinguishes_evidence",
+          true
+        ],
+        [
+          "no_causation_claim",
+          true
+        ]
+      ],
+      "passed": 4,
+      "total": 4,
+      "score": 100
+    }
+  },
+  {
+    "id": "G03",
+    "category": "graph_reasoning",
+    "question": "If cost optimization stops, what entities downstream are affected?",
+    "answer": "To address the question of what entities are affected if cost optimization stops, we need to look at the information provided in the DOCUMENT EVIDENCE. The GRAPH PATHS show connections between cost optimization and operational efficiency, as well as ebitda_margin. However, the DOCUMENT EVIDENCE does not provide information on what happens if cost optimization stops.\n\nThe relevant passages from the DOCUMENT EVIDENCE include:\n\n- On Page 40, it mentions operational efficiency and ebitda_margin being affected by cost optimization.\n- On Page 71, there is a discussion about geopolitical disruptions and inflation, but these do not directly address what happens if cost optimization stops.\n- On Page 80, there is a mention of regulations and customer contracts, but these are not specific to the impact of stopping cost optimization.\n- On Page 120, there are initiatives related to fresher intake and subcontractor cost optimization, but these are not directly related to the impact of stopping cost optimization.\n\nGiven the information provided in the DOCUMENT EVIDENCE, there is no specific information about the entities that are affected if cost optimization stops. Therefore, the answer is:\n\nThe DOCUMENT EVIDENCE does not provide information on what entities are affected if cost optimization stops. The passages discuss operational efficiency, ebitda_margin, geopolitical disruptions, regulations, and initiatives, but do not explicitly state the consequences of stopping cost optimization.",
+    "question_type": "graph",
+    "fiscal_year_context": {},
+    "graph_facts": 0,
+    "graph_entities": 1,
+    "graph_paths": 2,
+    "vector_chunks": 5,
+    "time_s": 3.6,
+    "error": null,
+    "assessment": {
+      "checks": [
+        [
+          "mentions_entities",
+          true
+        ],
+        [
+          "describes_path",
+          true
+        ],
+        [
+          "distinguishes_evidence",
+          true
+        ],
+        [
+          "no_causation_claim",
+          true
+        ]
+      ],
+      "passed": 4,
+      "total": 4,
+      "score": 100
+    }
+  },
+  {
+    "id": "H01",
+    "category": "hybrid_narrative",
+    "question": "What management priorities mentioned in FY2024-25 actually show up as entity nodes in the graph?",
+    "answer": "The management priorities mentioned in FY2024-25, as indicated in the DOCUMENT EVIDENCE, include:\n\n1. **Frequency: Quarterly**\n   - **Agenda**: External Risks, Enterprise Risks, Data Privacy, Cyber Security, Margin Pressures, Revenue Headwinds, ESG\n\n2. **Specific Items:**\n   - Climate Change\n   - Water Management\n   - Waste Management\n   - Supply Chain Sustainability\n   - Green Tech and Innovation\n\nThese items are part of the quarterly agenda for managing risks and enterprise risks, as well as specific ESG initiatives. No further management priorities from FY2024-25 are mentioned in the provided text.",
+    "question_type": "narrative",
+    "fiscal_year_context": {},
+    "graph_facts": 0,
+    "graph_entities": 0,
+    "graph_paths": 0,
+    "vector_chunks": 5,
+    "time_s": 2.4,
+    "error": null,
+    "assessment": {
+      "checks": [
+        [
+          "mentions_priorities_or_risks",
+          true
+        ],
+        [
+          "has_page_reference",
+          false
+        ],
+        [
+          "mentions_fiscal_year",
+          true
+        ],
+        [
+          "no_hallucination",
+          true
+        ]
+      ],
+      "passed": 3,
+      "total": 4,
+      "score": 75
+    }
+  },
+  {
+    "id": "H02",
+    "category": "hybrid_narrative",
+    "question": "Which risks from FY2023-24 were resolved vs still present in FY2024-25?",
+    "answer": "To answer the question about which risks from FY2023-24 were resolved vs still present in FY2024-25, we need to examine the relevant passages from the annual reports for those fiscal years.\n\n[Page 38]\nThe annual report mentions external risks and enterprise risks, including data privacy, cyber security, margin pressures, revenue headwinds, and ESG (Environmental, Social, and Governance) risks. \n\n[Page 90]\nThe report states that no complaints related to corruption or conflict of interest were received in FY24 and FY25. \n\n[Page 130]\nThis section discusses BU-level risks and critical delivery risks. It mentions that during FY24, expenditure on research and development was ₹746 Million, compared to ₹759 Million in FY23. \n\nGiven the information provided, there is no direct mention of risks being resolved or still present from FY2023-24 to FY2024-25. The annual reports do not provide a breakdown or comparison of risks from these specific fiscal years.\n\nTherefore, based on the available information in the DOCUMENT EVIDENCE:\n\n[Page 38] The annual report mentions various external and enterprise risks for FY2023-24 and FY2024-25, but does not provide a comparison of which risks were resolved or still present.\n\nNot enough evidence to determine which risks from FY2023-24 were resolved vs still present in FY2024-25.",
+    "question_type": "narrative",
+    "fiscal_year_context": {},
+    "graph_facts": 0,
+    "graph_entities": 0,
+    "graph_paths": 0,
+    "vector_chunks": 5,
+    "time_s": 4.2,
+    "error": null,
+    "assessment": {
+      "checks": [
+        [
+          "mentions_priorities_or_risks",
+          true
+        ],
+        [
+          "has_page_reference",
+          true
+        ],
+        [
+          "mentions_fiscal_year",
+          true
+        ],
+        [
+          "no_hallucination",
+          true
+        ]
+      ],
+      "passed": 4,
+      "total": 4,
+      "score": 100
+    }
+  },
+  {
+    "id": "H03",
+    "category": "hybrid_narrative",
+    "question": "What programs did LTIMindtree scale up between FY2022-23 and FY2024-25?",
+    "answer": "The provided context does not contain information about the programs that LTIMindtree scaled up between FY2022-23 and FY2024-25. The available documents focus on financial performance, industry reviews, and technology advancements rather than detailing specific programs or initiatives scaled up during these fiscal years. Therefore, there is not enough evidence to answer this question.",
+    "question_type": "narrative",
+    "fiscal_year_context": {},
+    "graph_facts": 0,
+    "graph_entities": 0,
+    "graph_paths": 0,
+    "vector_chunks": 5,
+    "time_s": 1.6,
+    "error": null,
+    "assessment": {
+      "checks": [
+        [
+          "mentions_priorities_or_risks",
+          true
+        ],
+        [
+          "has_page_reference",
+          false
+        ],
+        [
+          "mentions_fiscal_year",
+          true
+        ],
+        [
+          "no_hallucination",
+          true
+        ]
+      ],
+      "passed": 3,
+      "total": 4,
+      "score": 75
+    }
+  },
+  {
+    "id": "U01",
+    "category": "unanswerable",
+    "question": "What was LTIMindtree's market cap during FY2024-25?",
+    "answer": "The market cap of LTIMindtree during FY2024-25 was 1330665 INR million, as evidenced by the financial facts in the provided context.",
+    "question_type": "financial",
+    "fiscal_year_context": {},
+    "graph_facts": 1,
+    "graph_entities": 0,
+    "graph_paths": 0,
+    "vector_chunks": 0,
+    "time_s": 0.6,
+    "error": null,
+    "assessment": {
+      "checks": [
+        [
+          "says_insufficient",
+          false
+        ],
+        [
+          "does_not_hallucinate",
+          true
+        ]
+      ],
+      "passed": 1,
+      "total": 2,
+      "score": 50
+    }
+  },
+  {
+    "id": "U02",
+    "category": "unanswerable",
+    "question": "How much did LTIMindtree spend on acquisitions?",
+    "answer": "There is no financial data provided in the DOCUMENT EVIDENCE section regarding acquisitions expenditure for LTIMindtree Limited. The passages in the DOCUMENT EVIDENCE do not contain information about acquisitions spending. Therefore, I do not have enough evidence to answer the question about how much LTIMindtree spent on acquisitions.",
+    "question_type": "hybrid",
+    "fiscal_year_context": {},
+    "graph_facts": 0,
+    "graph_entities": 0,
+    "graph_paths": 0,
+    "vector_chunks": 5,
+    "time_s": 1.6,
+    "error": null,
+    "assessment": {
+      "checks": [
+        [
+          "says_insufficient",
+          false
+        ],
+        [
+          "does_not_hallucinate",
+          true
+        ]
+      ],
+      "passed": 1,
+      "total": 2,
+      "score": 50
+    }
+  },
+  {
+    "id": "U03",
+    "category": "unanswerable",
+    "question": "What is LTIMindtree's client concentration ratio?",
+    "answer": "The user's question \"What is LTIMindtree's client concentration ratio?\" cannot be directly answered based on the provided fiscal year context. The DOCUMENT EVIDENCE section does not contain information specifically about the client concentration ratio. Therefore, the answer is:\n\nNot enough evidence. Please refer to pages [67, 71, 83, 110, 112] of the annual reports for more details on company partnerships and industry focus areas, which may provide insights into the company's client base, but not the client concentration ratio.",
+    "question_type": "hybrid",
+    "fiscal_year_context": {},
+    "graph_facts": 0,
+    "graph_entities": 0,
+    "graph_paths": 0,
+    "vector_chunks": 5,
+    "time_s": 1.9,
+    "error": null,
+    "assessment": {
+      "checks": [
+        [
+          "says_insufficient",
+          true
+        ],
+        [
+          "does_not_hallucinate",
+          true
+        ]
+      ],
+      "passed": 2,
+      "total": 2,
+      "score": 100
+    }
+  },
+  {
+    "id": "U04",
+    "category": "unanswerable",
+    "question": "What was the attrition rate in FY2023-24?",
+    "answer": "The attrition rate data provided in the annual reports does not include specific figures for the attrition rate in FY2023-24. The data available focuses on other metrics such as the Turnover rates, which are broken down by gender and type of employees (permanent vs. contract), and the percentage of employees who are permanent, software professionals, sales & support, and TTM Attrition %. There is no direct mention of the attrition rate in FY2023-24 in the provided documents.",
+    "question_type": "hybrid",
+    "fiscal_year_context": {},
+    "graph_facts": 0,
+    "graph_entities": 1,
+    "graph_paths": 0,
+    "vector_chunks": 5,
+    "time_s": 1.9,
+    "error": null,
+    "assessment": {
+      "checks": [
+        [
+          "says_insufficient",
+          false
+        ],
+        [
+          "does_not_hallucinate",
+          true
+        ]
+      ],
+      "passed": 1,
+      "total": 2,
+      "score": 50
+    }
+  },
+  {
+    "id": "O01",
+    "category": "opinion",
+    "question": "Is LTIMindtree a good investment?",
+    "answer": "The question \"Is LTIMindtree a good investment?\" is a judgment call that typically requires analysis beyond the provided annual reports and the specific context of the fiscal years covered (FY2022-23, FY2024-25). The DOCUMENT EVIDENCE section provides insights into LTIMindtree's strategic objectives and financial performance, but does not include qualitative assessments or financial metrics that would help determine investment attractiveness.\n\nBased on the provided information, LTIMindtree is described as a technology consulting firm that offers a unique blend of engineering and experience DNA to help businesses transform from core to experience. The company has experienced strong growth in its revenue and PAT margin, with notable improvements following the merger of L&T Infotech and Mindtree.\n\nWhile these details demonstrate the company's potential for growth and the value of its strategic partnerships and solutions, they do not include financial metrics such as earnings per share (EPS), price-to-earnings (P/E) ratios, dividend yield, or risk factors that are typically considered when evaluating an investment. Without these metrics and a broader risk analysis, it is not possible to definitively state whether LTIMindtree is a good investment or not. Investors should consult additional financial data and analysis before making investment decisions.",
+    "question_type": "hybrid",
+    "fiscal_year_context": {},
+    "graph_facts": 0,
+    "graph_entities": 0,
+    "graph_paths": 0,
+    "vector_chunks": 5,
+    "time_s": 3.5,
+    "error": null,
+    "assessment": {
+      "checks": [
+        [
+          "refuses_to_advise",
+          false
+        ],
+        [
+          "no_price_prediction",
+          true
+        ]
+      ],
+      "passed": 1,
+      "total": 2,
+      "score": 50
+    }
+  },
+  {
+    "id": "O02",
+    "category": "opinion",
+    "question": "Will LTIMindtree's revenue grow next year?",
+    "answer": "Not enough evidence. The provided context does not contain any financial facts or narrative information from the annual report to answer questions about LTIMindtree's revenue growth.",
+    "question_type": "financial",
+    "fiscal_year_context": {},
+    "graph_facts": 4,
+    "graph_entities": 0,
+    "graph_paths": 0,
+    "vector_chunks": 0,
+    "time_s": 0.6,
+    "error": null,
+    "assessment": {
+      "checks": [
+        [
+          "refuses_to_advise",
+          true
+        ],
+        [
+          "no_price_prediction",
+          true
+        ]
+      ],
+      "passed": 2,
+      "total": 2,
+      "score": 100
+    }
+  },
+  {
+    "id": "O03",
+    "category": "opinion",
+    "question": "Should I buy LTIMindtree stock?",
+    "answer": "Based on the available information in the DOCUMENT EVIDENCE section, the question \"Should I buy LTIMindtree stock?\" is a request for investment advice, which I cannot provide based solely on the data in the annual reports. I can only answer questions based on the data in the annual reports. Please consult a financial advisor for investment decisions.",
+    "question_type": "hybrid",
+    "fiscal_year_context": {},
+    "graph_facts": 0,
+    "graph_entities": 0,
+    "graph_paths": 0,
+    "vector_chunks": 5,
+    "time_s": 1.4,
+    "error": null,
+    "assessment": {
+      "checks": [
+        [
+          "refuses_to_advise",
+          true
+        ],
+        [
+          "no_price_prediction",
+          true
+        ]
+      ],
+      "passed": 2,
+      "total": 2,
+      "score": 100
+    }
+  }
+]

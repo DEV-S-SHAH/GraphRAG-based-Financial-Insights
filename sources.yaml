@@ -1,0 +1,134 @@
+company:
+  name: "LTM Limited"
+  former_name: "LTIMindtree Limited"
+  ticker: "LTM"
+  nse: "LTM"
+  bse: "540005"
+  isin: "INE214T01019"
+
+
+sources:
+
+  investor_relations:
+    name: "LTM Investor Relations"
+    type: "primary"
+    base_url: "https://www.ltm.com/investors"
+    enabled: true
+
+    categories:
+      - annual_reports
+      - financial_results
+      - investor_presentations
+      - earnings_commentary
+      - corporate_announcements
+      - esg_brsr
+      - financial_statements
+      - risk_management
+
+
+  annual_reports:
+    name: "LTM Annual Reports"
+    type: "primary"
+    base_url: "https://www.ltm.com/investors/annual-reports"
+    enabled: true
+
+    categories:
+      - annual_reports
+
+
+  fy2026_annual_report:
+    name: "LTM Integrated Annual Report 2025-26"
+    type: "primary"
+    base_url: "https://www.ltm.com/annual-report-2026"
+    document_url: "https://www.ltm.com/content/dam/ltimcorporatewebsite/uploads/investors/2026/05/integrated-annual-report-fy26.pdf"
+    enabled: true
+
+    categories:
+      - integrated_annual_report
+      - financial_performance
+      - strategy
+      - risks
+      - opportunities
+
+
+  financial_results:
+    name: "LTM Financial Results"
+    type: "primary"
+    base_url: "https://www.ltm.com/investors/financial-results"
+    enabled: true
+
+    categories:
+      - quarterly_results
+      - annual_results
+
+
+  announcements:
+    name: "LTM Investor Announcements"
+    type: "primary"
+    base_url: "https://www.ltm.com/investors/announcements"
+    enabled: true
+
+    categories:
+      - corporate_announcements
+
+
+  nse:
+    name: "National Stock Exchange of India"
+    type: "exchange"
+    base_url: "https://www.nseindia.com/"
+    enabled: true
+
+    categories:
+      - corporate_announcements
+      - financial_results
+      - investor_presentations
+      - annual_reports
+      - shareholding
+
+
+  bse:
+    name: "BSE India"
+    type: "exchange"
+    base_url: "https://www.bseindia.com/"
+    enabled: true
+
+    categories:
+      - corporate_filings
+      - financial_results
+      - announcements
+      - annual_reports
+
+
+  market_data:
+    name: "Market Data"
+    type: "market"
+    enabled: true
+
+    categories:
+      - current_price
+      - historical_price
+      - market_cap
+      - trading_volume
+
+
+  financial_news:
+    name: "Financial News"
+    type: "news"
+    enabled: true
+
+    max_articles_per_run: 5
+
+    categories:
+      - revenue
+      - growth
+      - margins
+      - contracts
+      - ai
+      - acquisitions
+      - partnerships
+      - clients
+      - strategy
+      - guidance
+      - risks
+      - earnings
+      - stock_movement

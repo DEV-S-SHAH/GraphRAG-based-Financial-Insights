@@ -1,0 +1,69 @@
+{
+  "company": "LTIMindtree Limited",
+  "documents": [
+    {
+      "company": "LTIMindtree Limited",
+      "ticker": "LTIM",
+      "document_id": "LTIM_FY2022-23_Annual_Report",
+      "label": "FY2022-23",
+      "fiscal_year": "FY2022-23",
+      "year_start": "2022-04-01",
+      "year_end": "2023-03-31",
+      "filename": "LTM_FY2022-23_Annual_Report.pdf",
+      "path": "data/raw/annual_reports/LTM_FY2022-23_Annual_Report.pdf",
+      "source_url": "https://www.ltm.com/content/dam/ltimcorporatewebsite/annual-reports-2023/pdfs/ltm-annual-report-22-23.pdf",
+      "description": "Integrated Annual Report 2022-23 (first LTI+Mindtree report)",
+      "sha256": "629403f84962d49a8e591c1542ec278b2e89dac10fa6229200e5015cee83c08d",
+      "size_bytes": 76839242,
+      "num_pages": 416
+    },
+    {
+      "company": "LTIMindtree Limited",
+      "ticker": "LTIM",
+      "document_id": "LTIM_FY2023-24_Annual_Report",
+      "label": "FY2023-24",
+      "fiscal_year": "FY2023-24",
+      "year_start": "2023-04-01",
+      "year_end": "2024-03-31",
+      "filename": "LTM_FY2023-24_Annual_Report.pdf",
+      "path": "data/raw/annual_reports/LTM_FY2023-24_Annual_Report.pdf",
+      "source_url": "https://www.ltm.com/content/dam/ltimcorporatewebsite/annual-report/pdf/Integrated-Annual-Report-FY-2023-24.pdf",
+      "description": "Integrated Annual Report 2023-24",
+      "sha256": "bbb875185aa795a0f7844032ba07ae06f3e72ed7599f3804c4dc96248c54c538",
+      "size_bytes": 10064878,
+      "num_pages": 238
+    },
+    {
+      "company": "LTIMindtree Limited",
+      "ticker": "LTIM",
+      "document_id": "LTIM_FY2024-25_Annual_Report",
+      "label": "FY2024-25",
+      "fiscal_year": "FY2024-25",
+      "year_start": "2024-04-01",
+      "year_end": "2025-03-31",
+      "filename": "LTM_FY2024-25_Annual_Report.pdf",
+      "path": "data/raw/annual_reports/LTM_FY2024-25_Annual_Report.pdf",
+      "source_url": "https://www.ltm.com/content/dam/ltimcorporatewebsite/annual-report-2025/pdfs/integrated-annual-report-fy-2024-25.pdf",
+      "description": "Integrated Annual Report 2024-25",
+      "sha256": "b4b5aeefacba07fd77a8580899c2716220366929c8078891b52b4fbb248a2752",
+      "size_bytes": 15519354,
+      "num_pages": 237
+    },
+    {
+      "company": "LTIMindtree Limited",
+      "ticker": "LTIM",
+      "document_id": "LTIM_FY2025-26_Annual_Report",
+      "label": "FY2025-26",
+      "fiscal_year": "FY2025-26",
+      "year_start": "2025-04-01",
+      "year_end": "2026-03-31",
+      "filename": "LTM_FY2025-26_Annual_Report.pdf",
+      "path": "data/raw/annual_reports/LTM_FY2025-26_Annual_Report.pdf",
+      "source_url": "",
+      "description": "Integrated Annual Report 2025-26",
+      "sha256": "23b9b04835eb1ca03ee22e35082bf24cb42f6860af90a751d3bff7271552be3d",
+      "size_bytes": 10524186,
+      "num_pages": 275
+    }
+  ]
+}
