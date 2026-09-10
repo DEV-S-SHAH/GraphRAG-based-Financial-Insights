@@ -98,23 +98,20 @@ cd GraphRAG-based-Financial-Insights
 git clone https://github.com/DEV-S-SHAH/GraphRAG-based-Financial-Insights.git
 cd GraphRAG-based-Financial-Insights
 
-# 2. Copy environment configuration
-copy .env.example .env
-
-# 3. Start Database Containers
+# 2. Start Database Containers
 docker compose up -d financial-postgres financial-neo4j
 
-# 4. Create and activate Python virtual environment
+# 3. Create and activate Python virtual environment
 python -m venv .venv
 .venv\Scripts\Activate.ps1
 
-# 5. Install dependencies
+# 4. Install dependencies
 pip install -r requirements.txt
 
-# 6. Initialize Database Schemas & Knowledge Graph
+# 5. Initialize Database Schemas & Knowledge Graph
 python scripts\init_db.py
 
-# 7. Launch Streamlit Dashboard
+# 6. Launch Streamlit Dashboard
 streamlit run ui\app.py
 ```
 
@@ -140,23 +137,20 @@ chmod +x run.sh
 git clone https://github.com/DEV-S-SHAH/GraphRAG-based-Financial-Insights.git
 cd GraphRAG-based-Financial-Insights
 
-# 2. Copy environment configuration
-cp .env.example .env
-
-# 3. Start Database Containers
+# 2. Start Database Containers
 docker compose up -d financial-postgres financial-neo4j
 
-# 4. Create and activate virtual environment
+# 3. Create and activate virtual environment
 python3 -m venv .venv
 source .venv/bin/activate
 
-# 5. Install dependencies
+# 4. Install dependencies
 pip install -r requirements.txt
 
-# 6. Initialize Database Schemas & Knowledge Graph
+# 5. Initialize Database Schemas & Knowledge Graph
 python scripts/init_db.py
 
-# 7. Launch Streamlit Dashboard
+# 6. Launch Streamlit Dashboard
 streamlit run ui/app.py
 ```
 

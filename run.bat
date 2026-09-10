@@ -18,14 +18,9 @@ if %errorlevel% neq 0 (
 
 REM 2. Check .env
 if not exist .env (
-    if exist .env.example (
-        echo [INFO] Creating .env from .env.example...
-        copy .env.example .env
-    ) else (
-        echo [ERROR] Neither .env nor .env.example found.
-        pause
-        exit /b 1
-    )
+    echo [ERROR] .env file not found.
+    pause
+    exit /b 1
 )
 
 REM 3. Start Database Containers

@@ -36,13 +36,8 @@ fi
 
 # 2. Check .env
 if [ ! -f ".env" ]; then
-    if [ -f ".env.example" ]; then
-        echo "ℹ️  Creating .env from .env.example..."
-        cp .env.example .env
-    else
-        echo "❌ Error: Neither .env nor .env.example found."
-        exit 1
-    fi
+    echo "❌ Error: .env file not found."
+    exit 1
 fi
 
 # Source .env for variables

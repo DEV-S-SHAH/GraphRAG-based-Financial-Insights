@@ -14,13 +14,8 @@ if (-not (Get-Command docker -ErrorAction SilentlyContinue)) {
 
 # 2. Check .env
 if (-not (Test-Path ".env")) {
-    if (Test-Path ".env.example") {
-        Write-Host "ℹ️  Creating .env from .env.example..." -ForegroundColor Yellow
-        Copy-Item ".env.example" ".env"
-    } else {
-        Write-Error "Neither .env nor .env.example found."
-        exit 1
-    }
+    Write-Error ".env file not found."
+    exit 1
 }
 
 # 3. Start Database Containers
