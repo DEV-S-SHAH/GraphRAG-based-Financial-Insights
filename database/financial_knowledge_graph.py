@@ -100,7 +100,7 @@ class FinancialKnowledgeGraph:
     """Manages the Neo4j Financial Knowledge Graph."""
 
     def __init__(self):
-        self.uri = os.getenv("NEO4J_URI", "bolt://localhost:7687")
+        self.uri = os.getenv("NEO4J_URI", "bolt://127.0.0.1:7687")
         self.user = os.getenv("NEO4J_USER", "neo4j")
         self.password = os.getenv("NEO4J_PASSWORD")
 
@@ -111,8 +111,14 @@ class FinancialKnowledgeGraph:
             else:
                 self.password = "password123"
 
-        self.driver = GraphDatabase.driver(self.uri, auth=(self.user, self.password))
-        self.driver.verify_connectivity()
+        try:
+            self.driver = GraphDatabase.driver(self.uri, auth=(self.user, self.password))
+            self.driver.verify_connectivity()
+        except Exception:
+            alt_uri = "bolt://localhost:7687" if "127.0.0.1" in self.uri else "bolt://127.0.0.1:7687"
+            self.driver = GraphDatabase.driver(alt_uri, auth=(self.user, self.password))
+            self.driver.verify_connectivity()
+            self.uri = alt_uri
 
     def close(self):
         self.driver.close()

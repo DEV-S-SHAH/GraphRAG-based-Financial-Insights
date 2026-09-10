@@ -27,7 +27,7 @@ load_dotenv(PROJECT_ROOT / ".env")
 
 
 def create_driver():
-    uri = os.getenv("NEO4J_URI", "bolt://localhost:7687")
+    uri = os.getenv("NEO4J_URI", "bolt://127.0.0.1:7687")
     user = os.getenv("NEO4J_USER", "neo4j")
     password = os.getenv("NEO4J_PASSWORD")
 
@@ -35,12 +35,17 @@ def create_driver():
         auth = os.getenv("NEO4J_AUTH", "")
         if "/" in auth:
             user, password = auth.split("/", 1)
+        else:
+            password = "password123"
 
-    if not password:
-        raise ValueError("Neo4j password is missing.")
+    try:
+        driver = GraphDatabase.driver(uri, auth=(user, password))
+        driver.verify_connectivity()
+    except Exception:
+        alt_uri = "bolt://localhost:7687" if "127.0.0.1" in uri else "bolt://127.0.0.1:7687"
+        driver = GraphDatabase.driver(alt_uri, auth=(user, password))
+        driver.verify_connectivity()
 
-    driver = GraphDatabase.driver(uri, auth=(user, password))
-    driver.verify_connectivity()
     print("Neo4j connection successful.")
     return driver
 
