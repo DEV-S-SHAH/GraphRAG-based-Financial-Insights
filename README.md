@@ -82,13 +82,17 @@ cd GraphRAG-based-Financial-Insights
 # Run via PowerShell:
 .\run.ps1
 
-# Or run via Command Prompt / Double-click:
-.\run.bat
+# Or run via Command Prompt (CMD) / Double-click:
+run.bat
 ```
 
 > **Tip (PowerShell Execution Policy):** If PowerShell blocks script execution, run:
 > ```powershell
-> Set-ExecutionPolicy -ExecutionPolicy RemoteSigned -Scope Process
+> Set-ExecutionPolicy -Scope Process -ExecutionPolicy Bypass
+> ```
+> Or execute directly with bypass:
+> ```powershell
+> powershell -ExecutionPolicy Bypass -File .\run.ps1
 > ```
 
 #### Option B: Step-by-Step Manual Setup on Windows
@@ -101,17 +105,24 @@ cd GraphRAG-based-Financial-Insights
 # 2. Start Database Containers
 docker compose up -d financial-postgres financial-neo4j
 
-# 3. Create and activate Python virtual environment
+# 3. Create Python virtual environment
 python -m venv .venv
-.venv\Scripts\Activate.ps1
 
-# 4. Install dependencies
+# 4. Activate virtual environment:
+# ── If using PowerShell:
+.\.venv\Scripts\Activate.ps1
+# ── If using Command Prompt (CMD):
+.venv\Scripts\activate.bat
+# ── If using Git Bash:
+source .venv/Scripts/activate
+
+# 5. Install dependencies
 pip install -r requirements.txt
 
-# 5. Initialize Database Schemas & Knowledge Graph
+# 6. Initialize Database Schemas & Knowledge Graph
 python scripts\init_db.py
 
-# 6. Launch Streamlit Dashboard
+# 7. Launch Streamlit Dashboard
 streamlit run ui\app.py
 ```
 

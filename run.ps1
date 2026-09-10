@@ -27,22 +27,42 @@ Start-Sleep -Seconds 4
 
 # 4. Setup Python Environment
 Write-Host "`n🐍 [3/4] Setting up Python virtual environment..." -ForegroundColor Green
-if (Test-Path ".venv/Scripts/Activate.ps1") {
-    & .venv/Scripts/Activate.ps1
-} elseif (Test-Path ".venv/bin/Activate.ps1") {
-    & .venv/bin/Activate.ps1
-} else {
+if (-not (Test-Path ".venv")) {
     Write-Host "Creating virtual environment (.venv)..."
     python -m venv .venv
-    if (Test-Path ".venv/Scripts/Activate.ps1") {
-        & .venv/Scripts/Activate.ps1
+    if (Test-Path ".venv/Scripts/pip.exe") {
+        & .venv/Scripts/pip install -q -r requirements.txt
+    } elseif (Test-Path ".venv/bin/pip") {
+        & .venv/bin/pip install -q -r requirements.txt
     }
-    pip install -q -r requirements.txt
+}
+
+# Activate virtual environment in current scope
+if (Test-Path ".venv/Scripts/Activate.ps1") {
+    try {
+        . .venv/Scripts/Activate.ps1
+    } catch {
+        Write-Warning "PowerShell execution policy restricted script activation. Using venv binaries directly."
+    }
+} elseif (Test-Path ".venv/bin/Activate.ps1") {
+    . .venv/bin/Activate.ps1
+}
+
+# Determine python and streamlit binaries
+$PYTHON_BIN = "python"
+$STREAMLIT_BIN = "streamlit"
+
+if (Test-Path ".venv/Scripts/python.exe") {
+    $PYTHON_BIN = ".venv/Scripts/python.exe"
+    $STREAMLIT_BIN = ".venv/Scripts/streamlit.exe"
+} elseif (Test-Path ".venv/bin/python") {
+    $PYTHON_BIN = ".venv/bin/python"
+    $STREAMLIT_BIN = ".venv/bin/streamlit"
 }
 
 # 5. Initialize Schema
 Write-Host "`n⚙️  [4/4] Verifying database schemas and Knowledge Graph..." -ForegroundColor Green
-python scripts/init_db.py
+& $PYTHON_BIN scripts/init_db.py
 
 # 6. Launch Streamlit UI
 Write-Host "`n=================================================================" -ForegroundColor Cyan
@@ -52,4 +72,4 @@ Write-Host "👉 Neo4j Browser: http://localhost:7474 (user: neo4j / pwd: passwo
 Write-Host "👉 PostgreSQL CLI: docker exec -it financial-postgres psql -U financial_user -d financial_db" -ForegroundColor Yellow
 Write-Host "=================================================================`n" -ForegroundColor Cyan
 
-streamlit run ui/app.py
+& $STREAMLIT_BIN run ui/app.py
