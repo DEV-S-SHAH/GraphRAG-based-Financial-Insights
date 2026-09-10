@@ -183,6 +183,78 @@ class FinancialIngestionPipeline:
         print("=" * 70)
         return results
 
+    def ingest_from_chunks(self, chunks_dir: Optional[Path] = None) -> Dict[str, Any]:
+        """Directly embed and ingest pre-processed JSON chunk files into PostgreSQL."""
+        c_dir = chunks_dir or (PROJECT_ROOT / "data" / "chunks")
+        chunk_files = sorted(c_dir.glob("*_chunks.json"))
+
+        results = {"files_processed": 0, "chunks_ingested": 0, "documents": []}
+        print("=" * 70)
+        print(f"INGESTING FROM PRE-CHUNKED FILES ({len(chunk_files)} files)")
+        print(f"Embedding Model: {self.embedder.model_name} (Dim: {self.embedder.dimension})")
+        print("=" * 70)
+
+        for cf in chunk_files:
+            try:
+                with open(cf, "r", encoding="utf-8") as fp:
+                    payload = json.load(fp)
+            except Exception as e:
+                logger.warning(f"Could not read chunk file {cf}: {e}")
+                continue
+
+            doc_id = payload.get("document_id", cf.stem.replace("_chunks", ""))
+            chunks_list = payload.get("chunks", [])
+            if not chunks_list:
+                continue
+
+            fy = chunks_list[0].get("fiscal_year", "FY2023-24")
+            print(f"\n[CHUNKS] Embedding {doc_id} ({len(chunks_list)} chunks, {fy})...")
+
+            # Insert document
+            self.pg.insert_document({
+                "document_id": doc_id,
+                "company": "LTIMindtree Limited",
+                "ticker": "LTIM",
+                "source": "Pre-processed JSON Chunks",
+                "source_url": "",
+                "document_type": "annual_report",
+                "title": doc_id,
+                "reporting_period": fy,
+                "raw_file_path": str(cf),
+                "content_hash": doc_id,
+                "metadata": {"num_chunks": len(chunks_list)},
+            })
+
+            # Embed texts in batches
+            texts = [c.get("text", "") for c in chunks_list]
+            embeddings = self.embedder.embed_texts(texts)
+
+            for c, emb in zip(chunks_list, embeddings):
+                self.pg.insert_chunk(
+                    chunk_id=c.get("chunk_id", f"{doc_id}_{c.get('page', 1)}"),
+                    document_id=doc_id,
+                    fiscal_year=c.get("fiscal_year", fy),
+                    page=c.get("page", 1),
+                    section=c.get("section", ""),
+                    chunk_type=c.get("chunk_type", "prose"),
+                    text=c.get("text", ""),
+                    embedding=emb,
+                    metadata={"block_indices": c.get("block_indices", [])},
+                )
+
+            results["files_processed"] += 1
+            results["chunks_ingested"] += len(chunks_list)
+            results["documents"].append(doc_id)
+            print(f"  -> Ingested {len(chunks_list)} chunks into PostgreSQL.")
+
+        print("\n[GRAPH] Enriching Neo4j Knowledge Graph...")
+        self.kg.build_full_graph()
+
+        print("\n" + "=" * 70)
+        print(f"CHUNKS INGESTION COMPLETE: {results['chunks_ingested']} total chunks stored.")
+        print("=" * 70)
+        return results
+
 
 if __name__ == "__main__":
     pipeline = FinancialIngestionPipeline()

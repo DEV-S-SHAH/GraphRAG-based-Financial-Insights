@@ -35,8 +35,8 @@ def test_postgres_connection_and_stats():
 
 def test_pgvector_similarity_search():
     pg = PostgresVectorClient()
-    # Query with dummy 768-dim vector
-    dummy_vec = [0.01] * 768
+    # Query with vector matching table dimension
+    dummy_vec = [0.01] * pg.current_dimension
     results = pg.search_similarity(dummy_vec, top_k=3, fiscal_year="FY2023-24")
     assert len(results) > 0
     assert results[0]["fiscal_year"] == "FY2023-24"

@@ -29,23 +29,45 @@ class PostgresVectorClient:
         dbname: Optional[str] = None,
         user: Optional[str] = None,
         password: Optional[str] = None,
+        dimension: Optional[int] = None,
     ):
-        self.host = host or os.getenv("POSTGRES_HOST", "localhost")
+        raw_host = host or os.getenv("POSTGRES_HOST", "127.0.0.1")
+        # Normalize localhost to 127.0.0.1 to avoid Windows IPv6 (::1) port forwarding collisions
+        self.host = "127.0.0.1" if raw_host.lower() == "localhost" else raw_host
         self.port = int(port or os.getenv("POSTGRES_PORT", 5432))
         self.dbname = dbname or os.getenv("POSTGRES_DB", "financial_db")
         self.user = user or os.getenv("POSTGRES_USER", "financial_user")
         self.password = password or os.getenv("POSTGRES_PASSWORD", "password123")
+        self.dimension = int(dimension or os.getenv("EMBEDDING_DIM", "1024"))
+        self.current_dimension = self.dimension
         self._ensure_tables_and_indexes()
 
     def get_connection(self):
-        return psycopg.connect(
-            host=self.host,
-            port=self.port,
-            dbname=self.dbname,
-            user=self.user,
-            password=self.password,
-            autocommit=True,
-        )
+        try:
+            return psycopg.connect(
+                host=self.host,
+                port=self.port,
+                dbname=self.dbname,
+                user=self.user,
+                password=self.password,
+                autocommit=True,
+                connect_timeout=10,
+            )
+        except Exception as primary_exc:
+            # Fallback for Windows if connection to 127.0.0.1 or localhost fails
+            alt_host = "localhost" if self.host == "127.0.0.1" else "127.0.0.1"
+            try:
+                return psycopg.connect(
+                    host=alt_host,
+                    port=self.port,
+                    dbname=self.dbname,
+                    user=self.user,
+                    password=self.password,
+                    autocommit=True,
+                    connect_timeout=5,
+                )
+            except Exception:
+                raise primary_exc
 
     def _ensure_tables_and_indexes(self):
         """Ensure pgvector extension, vector_chunks table, and HNSW index exist."""
@@ -54,7 +76,7 @@ class PostgresVectorClient:
                 with conn.cursor() as cur:
                     cur.execute("CREATE EXTENSION IF NOT EXISTS vector;")
                     cur.execute(
-                        """
+                        f"""
                         CREATE TABLE IF NOT EXISTS vector_chunks (
                             vector_id BIGSERIAL PRIMARY KEY,
                             chunk_id TEXT UNIQUE NOT NULL,
@@ -64,12 +86,39 @@ class PostgresVectorClient:
                             section TEXT,
                             chunk_type TEXT,
                             text TEXT NOT NULL,
-                            embedding vector(768),
-                            metadata JSONB DEFAULT '{}'::jsonb,
+                            embedding vector({self.dimension}),
+                            metadata JSONB DEFAULT '{{}}'::jsonb,
                             created_at TIMESTAMPTZ DEFAULT NOW()
                         );
                         """
                     )
+                    # Detect existing table vector dimension
+                    try:
+                        cur.execute(
+                            """
+                            SELECT atttypmod FROM pg_attribute 
+                            WHERE attrelid = 'vector_chunks'::regclass AND attname = 'embedding';
+                            """
+                        )
+                        row = cur.fetchone()
+                        if row and row[0] > 0:
+                            existing_dim = row[0]
+                            if existing_dim != self.dimension:
+                                cur.execute("SELECT count(*) FROM vector_chunks;")
+                                cnt = cur.fetchone()[0]
+                                if cnt == 0:
+                                    cur.execute("DROP INDEX IF EXISTS idx_vector_chunks_hnsw;")
+                                    cur.execute(f"ALTER TABLE vector_chunks ALTER COLUMN embedding TYPE vector({self.dimension});")
+                                    self.current_dimension = self.dimension
+                                else:
+                                    self.current_dimension = existing_dim
+                            else:
+                                self.current_dimension = self.dimension
+                        else:
+                            self.current_dimension = self.dimension
+                    except Exception:
+                        self.current_dimension = self.dimension
+
                     # Create HNSW index for fast cosine distance search
                     try:
                         cur.execute(
@@ -173,6 +222,13 @@ class PostgresVectorClient:
         Search chunks using pgvector cosine distance `<=>`.
         Returns similarity score = 1 - cosine_distance.
         """
+        # Adapt query dimension to match table column dimension if needed
+        if len(query_embedding) != self.current_dimension:
+            if len(query_embedding) > self.current_dimension:
+                query_embedding = query_embedding[: self.current_dimension]
+            else:
+                query_embedding = query_embedding + [0.0] * (self.current_dimension - len(query_embedding))
+
         where_clauses = ["embedding IS NOT NULL"]
         where_params: List[Any] = []
 

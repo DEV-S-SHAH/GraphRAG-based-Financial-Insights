@@ -2,7 +2,7 @@
 
 A production-ready **Financial GraphRAG application** engineered for extracting verifiable, multi-year financial insights from corporate annual reports and SEC 10-K filings.
 
-Combines **Docling** structured PDF parsing, **semantic structure-aware chunking**, **PostgreSQL + pgvector** (768-dim, HNSW), **Neo4j 5 Financial Knowledge Graph**, **deterministic Python financial math**, and **LangGraph StateGraph** orchestration feeding a configurable **LLM** (Local Ollama, OpenAI, or Anthropic) and visualized through a **Streamlit research dashboard**.
+Combines **Docling** structured PDF parsing, **semantic structure-aware chunking**, **PostgreSQL + pgvector** (1024-dim BGE-M3, HNSW), **Neo4j 5 Financial Knowledge Graph**, **deterministic Python financial math**, and **LangGraph StateGraph** orchestration feeding a configurable **LLM** (Local Ollama, OpenAI, or Anthropic) and visualized through a **Streamlit research dashboard**.
 
 ---
 
@@ -36,7 +36,7 @@ Combines **Docling** structured PDF parsing, **semantic structure-aware chunking
         ┌────────┴────────────────────────┐
         ▼                                 ▼
 PostgreSQL + pgvector            Neo4j 5 Knowledge Graph
-(768-dim Nomics, HNSW,           (20 Node Types, 18 Relations,
+(1024-dim BGE-M3, HNSW,           (20 Node Types, 18 Relations,
  Metadata, Cosine Distance)        Multi-Year Audited Facts)
         │                                 │
         └────────┬────────────────────────┘
@@ -66,7 +66,11 @@ PostgreSQL + pgvector            Neo4j 5 Knowledge Graph
   - **macOS / Linux**: Standard Docker Desktop or Docker Engine.
 - **Python**: Version 3.10, 3.11, or 3.12 installed.
 - **Git**: Installed and available in terminal.
-- *(Optional Local LLM)*: [Ollama](https://ollama.com/) with `ollama pull qwen2.5:3b` and `ollama pull nomic-embed-text`.
+- *(Optional Local LLM & Embeddings)*: [Ollama](https://ollama.com/) with:
+  ```bash
+  ollama pull qwen2.5:3b
+  ollama pull bge-m3
+  ```
 
 ---
 
@@ -182,13 +186,13 @@ streamlit run ui/app.py
 Key environment variables in `.env`:
 
 ```ini
-# PostgreSQL + pgvector
-POSTGRES_HOST=localhost
+# PostgreSQL + pgvector (127.0.0.1 prevents Windows IPv6 ::1 localhost collision)
+POSTGRES_HOST=127.0.0.1
 POSTGRES_PORT=5432
 POSTGRES_DB=financial_db
 POSTGRES_USER=financial_user
 POSTGRES_PASSWORD=password123
-DATABASE_URL=postgresql://financial_user:password123@localhost:5432/financial_db
+DATABASE_URL=postgresql://financial_user:password123@127.0.0.1:5432/financial_db
 
 # Neo4j Graph Database
 NEO4J_URI=bolt://localhost:7687
@@ -205,10 +209,10 @@ OLLAMA_BASE_URL=http://localhost:11434
 OPENAI_API_KEY=
 ANTHROPIC_API_KEY=
 
-# Embeddings
+# Embeddings (Default: BGE-M3 1024-dim, top-tier retrieval performance)
 EMBEDDING_PROVIDER=ollama
-EMBEDDING_MODEL=nomic-embed-text
-EMBEDDING_DIM=768
+EMBEDDING_MODEL=bge-m3
+EMBEDDING_DIM=1024
 ```
 
 ---
@@ -217,7 +221,10 @@ EMBEDDING_DIM=768
 
 ### 1. Ingest Annual Reports
 ```bash
-# Ingest local PDF filings in data/raw/annual_reports/
+# Instant load from pre-processed annual report chunks (recommended for fast start)
+python scripts/ingest.py --source chunks
+
+# Ingest local PDF filings in data/raw/annual_reports/ via Docling
 python scripts/ingest.py --source local
 
 # Ingest 10-K filings via SEC EDGAR API
@@ -307,10 +314,11 @@ RETURN s.name AS Strategy, type(rel) AS Relation, m.name AS Metric;
 
 | Issue | Cause | Solution |
 |---|---|---|
+| **Windows: PostgreSQL password authentication failed (`financial_user`)** | 1. Windows resolves `localhost` to IPv6 `::1`, bypassing the Docker port forward.<br>2. A native PostgreSQL service is already running on Windows host port 5432. | 1. Ensure `POSTGRES_HOST=127.0.0.1` in `.env`.<br>2. If native PostgreSQL is running on Windows, stop it via Windows Services (`services.msc` $\rightarrow$ "postgresql-x64-..."), or change port to `5433:5432` in `docker-compose.yml` and set `POSTGRES_PORT=5433` in `.env`. |
 | **Port 5432 / 7474 in use** | Existing database running on host | Stop existing service (`brew services stop postgresql` on Mac, or Windows Services), or change port in `.env` and `docker-compose.yml`. |
 | **PowerShell script execution error** | Restricted Windows execution policy | Run `Set-ExecutionPolicy -ExecutionPolicy RemoteSigned -Scope Process` in PowerShell. |
 | **Docker not responding (Windows)** | WSL2 backend not enabled | Open Docker Desktop Settings $\rightarrow$ General $\rightarrow$ Enable "Use the WSL 2 based engine". |
-| **Ollama connection refused** | Local Ollama service is stopped | Start Ollama (`ollama serve`) and ensure models are pulled (`ollama pull qwen2.5:3b`). |
+| **Ollama connection refused** | Local Ollama service is stopped | Start Ollama (`ollama serve`) and ensure models are pulled (`ollama pull qwen2.5:3b && ollama pull bge-m3`). |
 | **Fresh Database Reset** | Want to wipe and re-initialize data | Run `docker compose down -v` followed by `docker compose up -d` and `python scripts/init_db.py`. |
 
 ---

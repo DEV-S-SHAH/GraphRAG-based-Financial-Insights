@@ -30,14 +30,21 @@ def main():
     parser = argparse.ArgumentParser(description="Ingest financial filings into PostgreSQL and Neo4j.")
     parser.add_argument(
         "--source",
-        choices=["all", "local", "sec", "web"],
+        choices=["all", "local", "sec", "web", "chunks"],
         default="local",
-        help="Source to ingest from (default: local)",
+        help="Source to ingest from: 'chunks' (instant load from data/chunks), 'local' (raw PDFs), 'sec', 'web', 'all'",
     )
     parser.add_argument("--ticker", default="LTIM", help="Company ticker (default: LTIM)")
     parser.add_argument("--max-docs", type=int, default=5, help="Maximum documents to process")
 
     args = parser.parse_args()
+
+    pipeline = FinancialIngestionPipeline()
+
+    if args.source == "chunks":
+        chunks_dir = PROJECT_ROOT / "data" / "chunks"
+        pipeline.ingest_from_chunks(chunks_dir=chunks_dir)
+        return
 
     raw_dir = PROJECT_ROOT / "data" / "raw" / "annual_reports"
     sources = []
@@ -49,7 +56,6 @@ def main():
     if args.source in ["all", "web"]:
         sources.append(WebFilingSource(sources_yaml_path=PROJECT_ROOT / "sources.yaml"))
 
-    pipeline = FinancialIngestionPipeline()
     pipeline.run_ingestion(sources=sources, max_docs=args.max_docs)
 
 
