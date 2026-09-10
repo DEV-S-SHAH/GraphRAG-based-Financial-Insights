@@ -1,8 +1,8 @@
 company:
-  name: "LTM Limited"
-  former_name: "LTIMindtree Limited"
-  ticker: "LTM"
-  nse: "LTM"
+  name: "LTIMindtree Limited"
+  former_name: "Larsen & Toubro Infotech / Mindtree"
+  ticker: "LTIM"
+  nse: "LTIM"
   bse: "540005"
   isin: "INE214T01019"
 
@@ -10,9 +10,9 @@ company:
 sources:
 
   investor_relations:
-    name: "LTM Investor Relations"
+    name: "LTIMindtree Investor Relations"
     type: "primary"
-    base_url: "https://www.ltm.com/investors"
+    base_url: "https://www.ltimindtree.com/investors"
     enabled: true
 
     categories:
@@ -27,9 +27,9 @@ sources:
 
 
   annual_reports:
-    name: "LTM Annual Reports"
+    name: "LTIMindtree Annual Reports"
     type: "primary"
-    base_url: "https://www.ltm.com/investors/annual-reports"
+    base_url: "https://www.ltimindtree.com/investors/annual-reports"
     enabled: true
 
     categories:
@@ -37,10 +37,10 @@ sources:
 
 
   fy2026_annual_report:
-    name: "LTM Integrated Annual Report 2025-26"
+    name: "LTIMindtree Integrated Annual Report 2025-26"
     type: "primary"
-    base_url: "https://www.ltm.com/annual-report-2026"
-    document_url: "https://www.ltm.com/content/dam/ltimcorporatewebsite/uploads/investors/2026/05/integrated-annual-report-fy26.pdf"
+    base_url: "https://www.ltimindtree.com/annual-report-2026"
+    document_url: "https://www.ltimindtree.com/content/dam/ltimcorporatewebsite/uploads/investors/2026/05/integrated-annual-report-fy26.pdf"
     enabled: true
 
     categories:
@@ -52,9 +52,9 @@ sources:
 
 
   financial_results:
-    name: "LTM Financial Results"
+    name: "LTIMindtree Financial Results"
     type: "primary"
-    base_url: "https://www.ltm.com/investors/financial-results"
+    base_url: "https://www.ltimindtree.com/investors/financial-results"
     enabled: true
 
     categories:
@@ -63,9 +63,9 @@ sources:
 
 
   announcements:
-    name: "LTM Investor Announcements"
+    name: "LTIMindtree Investor Announcements"
     type: "primary"
-    base_url: "https://www.ltm.com/investors/announcements"
+    base_url: "https://www.ltimindtree.com/investors/announcements"
     enabled: true
 
     categories:

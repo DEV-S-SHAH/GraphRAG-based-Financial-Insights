@@ -1,0 +1,8 @@
+# ==============================================================================
+# Financial GraphRAG: PostgreSQL + pgvector Container Image
+# ==============================================================================
+FROM pgvector/pgvector:pg16
+
+LABEL maintainer="Financial GraphRAG Team"
+LABEL description="PostgreSQL 16 with pgvector extension for Financial GraphRAG"
+LABEL component="vector-database"

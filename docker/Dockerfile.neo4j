@@ -1,0 +1,8 @@
+# ==============================================================================
+# Financial GraphRAG: Neo4j Graph Database Container Image
+# ==============================================================================
+FROM neo4j:5-community
+
+LABEL maintainer="Financial GraphRAG Team"
+LABEL description="Neo4j 5 Community Edition for Financial Knowledge Graph"
+LABEL component="graph-database"

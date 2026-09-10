@@ -17,13 +17,15 @@ import os
 import sys
 from pathlib import Path
 
+PROJECT_ROOT = Path(__file__).resolve().parent.parent
+if str(PROJECT_ROOT) not in sys.path:
+    sys.path.insert(0, str(PROJECT_ROOT))
+
 from dotenv import load_dotenv
 from neo4j import GraphDatabase
 
 from database.semantic_relationships import RELATIONSHIPS
 
-PROJECT_ROOT = Path(__file__).resolve().parent.parent
-sys.path.insert(0, str(PROJECT_ROOT))
 load_dotenv(PROJECT_ROOT / ".env")
 
 
@@ -61,6 +63,7 @@ MISSING_ENTITIES = [
     ("transformation initiatives", ["BusinessTheme"], "LTIM_business_theme_transformation_initiatives", "business_theme"),
     ("recurring revenues", ["BusinessTheme"], "LTIM_business_theme_recurring_revenues", "business_theme"),
     ("labor codes", ["Risk"], "LTIM_risk_labor_codes", "risk"),
+    ("order_inflow", ["FinancialMetric", "Metric"], "LTIM_metric_order_inflow", "metric"),
 ]
 
 

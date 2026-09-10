@@ -1,0 +1,164 @@
+<html>
+    <head>
+        <meta charset="utf-8">
+        
+            <script src="lib/bindings/utils.js"></script>
+            <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/vis-network/9.1.2/dist/dist/vis-network.min.css" integrity="sha512-WgxfT5LWjfszlPHXRmBWHkV2eceiWTOBvrKCNbdgDYTHrT2AeLCGbF4sZlZw3UMN3WtL0tGUoIAKsu8mllg/XA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/vis-network/9.1.2/dist/vis-network.min.js" integrity="sha512-LnvoEWDFrqGHlHmDD2101OrLcbsfkrzoSpvtSQtxK3RMnRV0eOkhhBN2dXHKRrUU8p2DGRTk35n4O8nWSVe1mQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+            
+        
+<center>
+<h1></h1>
+</center>
+
+<!-- <link rel="stylesheet" href="../node_modules/vis/dist/vis.min.css" type="text/css" />
+<script type="text/javascript" src="../node_modules/vis/dist/vis.js"> </script>-->
+        <link
+          href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/css/bootstrap.min.css"
+          rel="stylesheet"
+          integrity="sha384-eOJMYsd53ii+scO/bJGFsiCZc+5NDVN2yr8+0RDqr0Ql0h+rP48ckxlpbzKgwra6"
+          crossorigin="anonymous"
+        />
+        <script
+          src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.bundle.min.js"
+          integrity="sha384-JEW9xMcG8R+pH31jmWH6WWP0WintQrMb4s7ZOdauHnUtxwoG2vI5DkLtS3qm9Ekf"
+          crossorigin="anonymous"
+        ></script>
+
+
+        <center>
+          <h1></h1>
+        </center>
+        <style type="text/css">
+
+             #mynetwork {
+                 width: 100%;
+                 height: 520px;
+                 background-color: #1A202C;
+                 border: 1px solid lightgray;
+                 position: relative;
+                 float: left;
+             }
+
+             
+
+             
+
+             
+        </style>
+    </head>
+
+
+    <body>
+        <div class="card" style="width: 100%">
+            
+            
+            <div id="mynetwork" class="card-body"></div>
+        </div>
+
+        
+        
+
+        <script type="text/javascript">
+
+              // initialize global variables.
+              var edges;
+              var nodes;
+              var allNodes;
+              var allEdges;
+              var nodeColors;
+              var originalNodes;
+              var network;
+              var container;
+              var options, data;
+              var filter = {
+                  item : '',
+                  property : '',
+                  value : []
+              };
+
+              
+
+              
+
+              // This method is responsible for drawing the graph, returns the drawn network
+              function drawGraph() {
+                  var container = document.getElementById('mynetwork');
+
+                  
+
+                  // parsing and collecting nodes and edges from the python
+                  nodes = new vis.DataSet([{"color": "#38B2AC", "font": {"color": "#FFFFFF"}, "id": "4:56a66254-24a8-4d09-944d-a733b1380e25:7", "label": "LTIM", "shape": "dot", "size": 16, "title": "Type: FinancialValue\nName: LTIM"}, {"color": "#A0AEC0", "font": {"color": "#FFFFFF"}, "id": "4:56a66254-24a8-4d09-944d-a733b1380e25:6338", "label": "LTIM", "shape": "dot", "size": 16, "title": "Type: SourceDocument\nName: LTIM"}, {"color": "#718096", "font": {"color": "#FFFFFF"}, "id": "4:56a66254-24a8-4d09-944d-a733b1380e25:10", "label": "LTIM_FY2025-26_Annual_Rep", "shape": "dot", "size": 16, "title": "Type: SourcePage\nName: LTIM_FY2025-26_Annual_Report"}, {"color": "#A0AEC0", "font": {"color": "#FFFFFF"}, "id": "4:56a66254-24a8-4d09-944d-a733b1380e25:258", "label": "LTIM_FY2022-23_Annual_Rep", "shape": "dot", "size": 16, "title": "Type: Chunk\nName: LTIM_FY2022-23_Annual_Report"}, {"color": "#A0AEC0", "font": {"color": "#FFFFFF"}, "id": "4:56a66254-24a8-4d09-944d-a733b1380e25:6253", "label": "LTIM", "shape": "dot", "size": 16, "title": "Type: SourceDocument\nName: LTIM"}, {"color": "#A0AEC0", "font": {"color": "#FFFFFF"}, "id": "4:56a66254-24a8-4d09-944d-a733b1380e25:259", "label": "LTIM_FY2022-23_Annual_Rep", "shape": "dot", "size": 16, "title": "Type: Chunk\nName: LTIM_FY2022-23_Annual_Report"}, {"color": "#A0AEC0", "font": {"color": "#FFFFFF"}, "id": "4:56a66254-24a8-4d09-944d-a733b1380e25:260", "label": "LTIM_FY2022-23_Annual_Rep", "shape": "dot", "size": 16, "title": "Type: Chunk\nName: LTIM_FY2022-23_Annual_Report"}, {"color": "#E53E3E", "font": {"color": "#FFFFFF"}, "id": "4:56a66254-24a8-4d09-944d-a733b1380e25:6251", "label": "LTIMindtree Limited", "shape": "dot", "size": 24, "title": "Type: Company\nName: LTIMindtree Limited"}, {"color": "#48BB78", "font": {"color": "#FFFFFF"}, "id": "4:56a66254-24a8-4d09-944d-a733b1380e25:11", "label": "revenue_growth_usd", "shape": "dot", "size": 24, "title": "Type: FinancialMetric\nName: revenue_growth_usd"}, {"color": "#A0AEC0", "font": {"color": "#FFFFFF"}, "id": "4:56a66254-24a8-4d09-944d-a733b1380e25:261", "label": "LTIM_FY2022-23_Annual_Rep", "shape": "dot", "size": 16, "title": "Type: Chunk\nName: LTIM_FY2022-23_Annual_Report"}, {"color": "#A0AEC0", "font": {"color": "#FFFFFF"}, "id": "4:56a66254-24a8-4d09-944d-a733b1380e25:262", "label": "LTIM_FY2022-23_Annual_Rep", "shape": "dot", "size": 16, "title": "Type: Chunk\nName: LTIM_FY2022-23_Annual_Report"}, {"color": "#A0AEC0", "font": {"color": "#FFFFFF"}, "id": "4:56a66254-24a8-4d09-944d-a733b1380e25:263", "label": "LTIM_FY2022-23_Annual_Rep", "shape": "dot", "size": 16, "title": "Type: Chunk\nName: LTIM_FY2022-23_Annual_Report"}, {"color": "#A0AEC0", "font": {"color": "#FFFFFF"}, "id": "4:56a66254-24a8-4d09-944d-a733b1380e25:264", "label": "LTIM_FY2022-23_Annual_Rep", "shape": "dot", "size": 16, "title": "Type: Chunk\nName: LTIM_FY2022-23_Annual_Report"}, {"color": "#A0AEC0", "font": {"color": "#FFFFFF"}, "id": "4:56a66254-24a8-4d09-944d-a733b1380e25:265", "label": "LTIM_FY2022-23_Annual_Rep", "shape": "dot", "size": 16, "title": "Type: Chunk\nName: LTIM_FY2022-23_Annual_Report"}, {"color": "#38B2AC", "font": {"color": "#FFFFFF"}, "id": "4:56a66254-24a8-4d09-944d-a733b1380e25:12", "label": "LTIM", "shape": "dot", "size": 16, "title": "Type: FinancialValue\nName: LTIM"}, {"color": "#A0AEC0", "font": {"color": "#FFFFFF"}, "id": "4:56a66254-24a8-4d09-944d-a733b1380e25:266", "label": "LTIM_FY2022-23_Annual_Rep", "shape": "dot", "size": 16, "title": "Type: Chunk\nName: LTIM_FY2022-23_Annual_Report"}, {"color": "#A0AEC0", "font": {"color": "#FFFFFF"}, "id": "4:56a66254-24a8-4d09-944d-a733b1380e25:267", "label": "LTIM_FY2022-23_Annual_Rep", "shape": "dot", "size": 16, "title": "Type: Chunk\nName: LTIM_FY2022-23_Annual_Report"}, {"color": "#A0AEC0", "font": {"color": "#FFFFFF"}, "id": "4:56a66254-24a8-4d09-944d-a733b1380e25:268", "label": "LTIM_FY2022-23_Annual_Rep", "shape": "dot", "size": 16, "title": "Type: Chunk\nName: LTIM_FY2022-23_Annual_Report"}, {"color": "#A0AEC0", "font": {"color": "#FFFFFF"}, "id": "4:56a66254-24a8-4d09-944d-a733b1380e25:269", "label": "LTIM_FY2022-23_Annual_Rep", "shape": "dot", "size": 16, "title": "Type: Chunk\nName: LTIM_FY2022-23_Annual_Report"}, {"color": "#A0AEC0", "font": {"color": "#FFFFFF"}, "id": "4:56a66254-24a8-4d09-944d-a733b1380e25:270", "label": "LTIM_FY2022-23_Annual_Rep", "shape": "dot", "size": 16, "title": "Type: Chunk\nName: LTIM_FY2022-23_Annual_Report"}, {"color": "#4299E1", "font": {"color": "#FFFFFF"}, "id": "4:56a66254-24a8-4d09-944d-a733b1380e25:6337", "label": "FY2025-26", "shape": "dot", "size": 16, "title": "Type: ReportingPeriod\nName: FY2025-26"}, {"color": "#A0AEC0", "font": {"color": "#FFFFFF"}, "id": "4:56a66254-24a8-4d09-944d-a733b1380e25:271", "label": "LTIM_FY2022-23_Annual_Rep", "shape": "dot", "size": 16, "title": "Type: Chunk\nName: LTIM_FY2022-23_Annual_Report"}, {"color": "#48BB78", "font": {"color": "#FFFFFF"}, "id": "4:56a66254-24a8-4d09-944d-a733b1380e25:14", "label": "revenue_growth_constant_c", "shape": "dot", "size": 24, "title": "Type: FinancialMetric\nName: revenue_growth_constant_currency"}, {"color": "#A0AEC0", "font": {"color": "#FFFFFF"}, "id": "4:56a66254-24a8-4d09-944d-a733b1380e25:272", "label": "LTIM_FY2022-23_Annual_Rep", "shape": "dot", "size": 16, "title": "Type: Chunk\nName: LTIM_FY2022-23_Annual_Report"}, {"color": "#A0AEC0", "font": {"color": "#FFFFFF"}, "id": "4:56a66254-24a8-4d09-944d-a733b1380e25:273", "label": "LTIM_FY2022-23_Annual_Rep", "shape": "dot", "size": 16, "title": "Type: Chunk\nName: LTIM_FY2022-23_Annual_Report"}, {"color": "#A0AEC0", "font": {"color": "#FFFFFF"}, "id": "4:56a66254-24a8-4d09-944d-a733b1380e25:274", "label": "LTIM_FY2022-23_Annual_Rep", "shape": "dot", "size": 16, "title": "Type: Chunk\nName: LTIM_FY2022-23_Annual_Report"}, {"color": "#A0AEC0", "font": {"color": "#FFFFFF"}, "id": "4:56a66254-24a8-4d09-944d-a733b1380e25:275", "label": "LTIM_FY2022-23_Annual_Rep", "shape": "dot", "size": 16, "title": "Type: Chunk\nName: LTIM_FY2022-23_Annual_Report"}, {"color": "#A0AEC0", "font": {"color": "#FFFFFF"}, "id": "4:56a66254-24a8-4d09-944d-a733b1380e25:276", "label": "LTIM_FY2022-23_Annual_Rep", "shape": "dot", "size": 16, "title": "Type: Chunk\nName: LTIM_FY2022-23_Annual_Report"}, {"color": "#38B2AC", "font": {"color": "#FFFFFF"}, "id": "4:56a66254-24a8-4d09-944d-a733b1380e25:16", "label": "LTIM", "shape": "dot", "size": 16, "title": "Type: FinancialValue\nName: LTIM"}, {"color": "#A0AEC0", "font": {"color": "#FFFFFF"}, "id": "4:56a66254-24a8-4d09-944d-a733b1380e25:277", "label": "LTIM_FY2022-23_Annual_Rep", "shape": "dot", "size": 16, "title": "Type: Chunk\nName: LTIM_FY2022-23_Annual_Report"}, {"color": "#A0AEC0", "font": {"color": "#FFFFFF"}, "id": "4:56a66254-24a8-4d09-944d-a733b1380e25:278", "label": "LTIM_FY2022-23_Annual_Rep", "shape": "dot", "size": 16, "title": "Type: Chunk\nName: LTIM_FY2022-23_Annual_Report"}, {"color": "#A0AEC0", "font": {"color": "#FFFFFF"}, "id": "4:56a66254-24a8-4d09-944d-a733b1380e25:279", "label": "LTIM_FY2022-23_Annual_Rep", "shape": "dot", "size": 16, "title": "Type: Chunk\nName: LTIM_FY2022-23_Annual_Report"}, {"color": "#A0AEC0", "font": {"color": "#FFFFFF"}, "id": "4:56a66254-24a8-4d09-944d-a733b1380e25:280", "label": "LTIM_FY2022-23_Annual_Rep", "shape": "dot", "size": 16, "title": "Type: Chunk\nName: LTIM_FY2022-23_Annual_Report"}]);
+                  edges = new vis.DataSet([{"from": "4:56a66254-24a8-4d09-944d-a733b1380e25:7", "label": "SUPPORTED_BY", "title": "SUPPORTED_BY", "to": "4:56a66254-24a8-4d09-944d-a733b1380e25:6338"}, {"from": "4:56a66254-24a8-4d09-944d-a733b1380e25:6338", "label": "HAS_PAGE", "title": "HAS_PAGE", "to": "4:56a66254-24a8-4d09-944d-a733b1380e25:10"}, {"from": "4:56a66254-24a8-4d09-944d-a733b1380e25:258", "label": "FROM_DOCUMENT", "title": "FROM_DOCUMENT", "to": "4:56a66254-24a8-4d09-944d-a733b1380e25:6253"}, {"from": "4:56a66254-24a8-4d09-944d-a733b1380e25:259", "label": "FROM_DOCUMENT", "title": "FROM_DOCUMENT", "to": "4:56a66254-24a8-4d09-944d-a733b1380e25:6253"}, {"from": "4:56a66254-24a8-4d09-944d-a733b1380e25:260", "label": "FROM_DOCUMENT", "title": "FROM_DOCUMENT", "to": "4:56a66254-24a8-4d09-944d-a733b1380e25:6253"}, {"from": "4:56a66254-24a8-4d09-944d-a733b1380e25:7", "label": "FOUND_ON", "title": "FOUND_ON", "to": "4:56a66254-24a8-4d09-944d-a733b1380e25:10"}, {"from": "4:56a66254-24a8-4d09-944d-a733b1380e25:6251", "label": "REPORTED", "title": "REPORTED", "to": "4:56a66254-24a8-4d09-944d-a733b1380e25:11"}, {"from": "4:56a66254-24a8-4d09-944d-a733b1380e25:261", "label": "FROM_DOCUMENT", "title": "FROM_DOCUMENT", "to": "4:56a66254-24a8-4d09-944d-a733b1380e25:6253"}, {"from": "4:56a66254-24a8-4d09-944d-a733b1380e25:262", "label": "FROM_DOCUMENT", "title": "FROM_DOCUMENT", "to": "4:56a66254-24a8-4d09-944d-a733b1380e25:6253"}, {"from": "4:56a66254-24a8-4d09-944d-a733b1380e25:263", "label": "FROM_DOCUMENT", "title": "FROM_DOCUMENT", "to": "4:56a66254-24a8-4d09-944d-a733b1380e25:6253"}, {"from": "4:56a66254-24a8-4d09-944d-a733b1380e25:264", "label": "FROM_DOCUMENT", "title": "FROM_DOCUMENT", "to": "4:56a66254-24a8-4d09-944d-a733b1380e25:6253"}, {"from": "4:56a66254-24a8-4d09-944d-a733b1380e25:265", "label": "FROM_DOCUMENT", "title": "FROM_DOCUMENT", "to": "4:56a66254-24a8-4d09-944d-a733b1380e25:6253"}, {"from": "4:56a66254-24a8-4d09-944d-a733b1380e25:6251", "label": "HAS_VALUE", "title": "HAS_VALUE", "to": "4:56a66254-24a8-4d09-944d-a733b1380e25:12"}, {"from": "4:56a66254-24a8-4d09-944d-a733b1380e25:12", "label": "FOR_METRIC", "title": "FOR_METRIC", "to": "4:56a66254-24a8-4d09-944d-a733b1380e25:11"}, {"from": "4:56a66254-24a8-4d09-944d-a733b1380e25:266", "label": "FROM_DOCUMENT", "title": "FROM_DOCUMENT", "to": "4:56a66254-24a8-4d09-944d-a733b1380e25:6253"}, {"from": "4:56a66254-24a8-4d09-944d-a733b1380e25:267", "label": "FROM_DOCUMENT", "title": "FROM_DOCUMENT", "to": "4:56a66254-24a8-4d09-944d-a733b1380e25:6253"}, {"from": "4:56a66254-24a8-4d09-944d-a733b1380e25:268", "label": "FROM_DOCUMENT", "title": "FROM_DOCUMENT", "to": "4:56a66254-24a8-4d09-944d-a733b1380e25:6253"}, {"from": "4:56a66254-24a8-4d09-944d-a733b1380e25:269", "label": "FROM_DOCUMENT", "title": "FROM_DOCUMENT", "to": "4:56a66254-24a8-4d09-944d-a733b1380e25:6253"}, {"from": "4:56a66254-24a8-4d09-944d-a733b1380e25:270", "label": "FROM_DOCUMENT", "title": "FROM_DOCUMENT", "to": "4:56a66254-24a8-4d09-944d-a733b1380e25:6253"}, {"from": "4:56a66254-24a8-4d09-944d-a733b1380e25:12", "label": "FOR_PERIOD", "title": "FOR_PERIOD", "to": "4:56a66254-24a8-4d09-944d-a733b1380e25:6337"}, {"from": "4:56a66254-24a8-4d09-944d-a733b1380e25:271", "label": "FROM_DOCUMENT", "title": "FROM_DOCUMENT", "to": "4:56a66254-24a8-4d09-944d-a733b1380e25:6253"}, {"from": "4:56a66254-24a8-4d09-944d-a733b1380e25:12", "label": "SUPPORTED_BY", "title": "SUPPORTED_BY", "to": "4:56a66254-24a8-4d09-944d-a733b1380e25:6338"}, {"from": "4:56a66254-24a8-4d09-944d-a733b1380e25:12", "label": "FOUND_ON", "title": "FOUND_ON", "to": "4:56a66254-24a8-4d09-944d-a733b1380e25:10"}, {"from": "4:56a66254-24a8-4d09-944d-a733b1380e25:6251", "label": "REPORTED", "title": "REPORTED", "to": "4:56a66254-24a8-4d09-944d-a733b1380e25:14"}, {"from": "4:56a66254-24a8-4d09-944d-a733b1380e25:272", "label": "FROM_DOCUMENT", "title": "FROM_DOCUMENT", "to": "4:56a66254-24a8-4d09-944d-a733b1380e25:6253"}, {"from": "4:56a66254-24a8-4d09-944d-a733b1380e25:273", "label": "FROM_DOCUMENT", "title": "FROM_DOCUMENT", "to": "4:56a66254-24a8-4d09-944d-a733b1380e25:6253"}, {"from": "4:56a66254-24a8-4d09-944d-a733b1380e25:274", "label": "FROM_DOCUMENT", "title": "FROM_DOCUMENT", "to": "4:56a66254-24a8-4d09-944d-a733b1380e25:6253"}, {"from": "4:56a66254-24a8-4d09-944d-a733b1380e25:275", "label": "FROM_DOCUMENT", "title": "FROM_DOCUMENT", "to": "4:56a66254-24a8-4d09-944d-a733b1380e25:6253"}, {"from": "4:56a66254-24a8-4d09-944d-a733b1380e25:276", "label": "FROM_DOCUMENT", "title": "FROM_DOCUMENT", "to": "4:56a66254-24a8-4d09-944d-a733b1380e25:6253"}, {"from": "4:56a66254-24a8-4d09-944d-a733b1380e25:6251", "label": "HAS_VALUE", "title": "HAS_VALUE", "to": "4:56a66254-24a8-4d09-944d-a733b1380e25:16"}, {"from": "4:56a66254-24a8-4d09-944d-a733b1380e25:16", "label": "FOR_METRIC", "title": "FOR_METRIC", "to": "4:56a66254-24a8-4d09-944d-a733b1380e25:14"}, {"from": "4:56a66254-24a8-4d09-944d-a733b1380e25:277", "label": "FROM_DOCUMENT", "title": "FROM_DOCUMENT", "to": "4:56a66254-24a8-4d09-944d-a733b1380e25:6253"}, {"from": "4:56a66254-24a8-4d09-944d-a733b1380e25:278", "label": "FROM_DOCUMENT", "title": "FROM_DOCUMENT", "to": "4:56a66254-24a8-4d09-944d-a733b1380e25:6253"}, {"from": "4:56a66254-24a8-4d09-944d-a733b1380e25:279", "label": "FROM_DOCUMENT", "title": "FROM_DOCUMENT", "to": "4:56a66254-24a8-4d09-944d-a733b1380e25:6253"}, {"from": "4:56a66254-24a8-4d09-944d-a733b1380e25:280", "label": "FROM_DOCUMENT", "title": "FROM_DOCUMENT", "to": "4:56a66254-24a8-4d09-944d-a733b1380e25:6253"}]);
+
+                  nodeColors = {};
+                  allNodes = nodes.get({ returnType: "Object" });
+                  for (nodeId in allNodes) {
+                    nodeColors[nodeId] = allNodes[nodeId].color;
+                  }
+                  allEdges = edges.get({ returnType: "Object" });
+                  // adding nodes and edges to the graph
+                  data = {nodes: nodes, edges: edges};
+
+                  var options = {
+    "configure": {
+        "enabled": false
+    },
+    "edges": {
+        "color": {
+            "inherit": true
+        },
+        "smooth": {
+            "enabled": true,
+            "type": "dynamic"
+        }
+    },
+    "interaction": {
+        "dragNodes": true,
+        "hideEdgesOnDrag": false,
+        "hideNodesOnDrag": false
+    },
+    "physics": {
+        "enabled": true,
+        "forceAtlas2Based": {
+            "avoidOverlap": 0,
+            "centralGravity": 0.01,
+            "damping": 0.4,
+            "gravitationalConstant": -50,
+            "springConstant": 0.08,
+            "springLength": 100
+        },
+        "solver": "forceAtlas2Based",
+        "stabilization": {
+            "enabled": true,
+            "fit": true,
+            "iterations": 1000,
+            "onlyDynamicEdges": false,
+            "updateInterval": 50
+        }
+    }
+};
+
+                  
+
+
+                  
+
+                  network = new vis.Network(container, data, options);
+
+                  
+
+                  
+
+                  
+
+
+                  
+
+                  return network;
+
+              }
+              drawGraph();
+        </script>
+    </body>
+</html>

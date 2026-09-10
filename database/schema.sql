@@ -1,5 +1,5 @@
 -- ============================================================
--- LTM Financial GraphRAG
+-- Financial GraphRAG: Core Relational & Vector Schema
 -- PostgreSQL Database Schema
 -- ============================================================
 
@@ -74,6 +74,34 @@ CREATE TABLE IF NOT EXISTS chunks (
 
     UNIQUE(document_id, chunk_index)
 );
+
+
+-- ============================================================
+-- 2b. VECTOR CHUNKS (Optimized for Fast HNSW Cosine Distance)
+-- ============================================================
+
+CREATE TABLE IF NOT EXISTS vector_chunks (
+    vector_id BIGSERIAL PRIMARY KEY,
+    chunk_id TEXT UNIQUE NOT NULL,
+    document_id TEXT NOT NULL,
+    fiscal_year TEXT NOT NULL,
+    page INTEGER,
+    section TEXT,
+    chunk_type TEXT,
+    text TEXT NOT NULL,
+    embedding vector(768),
+    metadata JSONB DEFAULT '{}'::jsonb,
+    created_at TIMESTAMPTZ DEFAULT NOW()
+);
+
+CREATE INDEX IF NOT EXISTS idx_vector_chunks_hnsw
+    ON vector_chunks USING hnsw (embedding vector_cosine_ops);
+
+CREATE INDEX IF NOT EXISTS idx_vector_chunks_fy
+    ON vector_chunks (fiscal_year);
+
+CREATE INDEX IF NOT EXISTS idx_vector_chunks_doc
+    ON vector_chunks (document_id);
 
 
 -- ============================================================

@@ -1,29 +1,55 @@
+# ==============================================================================
+# Financial GraphRAG: Production Multi-Container Orchestration
+# ==============================================================================
+# Services:
+#   1. financial-postgres : PostgreSQL 16 + pgvector (768-dim, HNSW indexing)
+#   2. financial-neo4j    : Neo4j 5 Community (Financial Knowledge Graph)
+#   3. financial-app      : Streamlit Research Dashboard (Optional Docker container)
+# ==============================================================================
+
 services:
 
-  postgres:
-    image: pgvector/pgvector:pg16
-    container_name: ltm-postgres
+  financial-postgres:
+    image: financial-graphrag-postgres:16
+    build:
+      context: .
+      dockerfile: docker/Dockerfile.postgres
+    container_name: financial-postgres
     restart: unless-stopped
 
     environment:
-      POSTGRES_DB: ${POSTGRES_DB}
-      POSTGRES_USER: ${POSTGRES_USER}
-      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+      POSTGRES_DB: ${POSTGRES_DB:-financial_db}
+      POSTGRES_USER: ${POSTGRES_USER:-financial_user}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-password123}
+
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U ${POSTGRES_USER:-financial_user} -d ${POSTGRES_DB:-financial_db}"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
 
     ports:
-      - "${POSTGRES_PORT}:5432"
+      - "${POSTGRES_PORT:-5432}:5432"
 
     volumes:
       - postgres_data:/var/lib/postgresql/data
 
-
-  neo4j:
-    image: neo4j:5
-    container_name: ltm-neo4j
+  financial-neo4j:
+    image: financial-graphrag-neo4j:5
+    build:
+      context: .
+      dockerfile: docker/Dockerfile.neo4j
+    container_name: financial-neo4j
     restart: unless-stopped
 
     environment:
-      NEO4J_AUTH: ${NEO4J_AUTH}
+      NEO4J_AUTH: ${NEO4J_AUTH:-neo4j/password123}
+
+    healthcheck:
+      test: ["CMD-SHELL", "cypher-shell -u neo4j -p ${NEO4J_PASSWORD:-password123} 'RETURN 1' || exit 1"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
 
     ports:
       - "7474:7474"
@@ -33,6 +59,36 @@ services:
       - neo4j_data:/data
       - neo4j_logs:/logs
 
+  financial-app:
+    image: financial-graphrag-app:latest
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: financial-app
+    restart: unless-stopped
+    profiles: ["app", "all"]
+
+    environment:
+      - POSTGRES_HOST=financial-postgres
+      - POSTGRES_PORT=5432
+      - POSTGRES_DB=${POSTGRES_DB:-financial_db}
+      - POSTGRES_USER=${POSTGRES_USER:-financial_user}
+      - POSTGRES_PASSWORD=${POSTGRES_PASSWORD:-password123}
+      - NEO4J_URI=bolt://financial-neo4j:7687
+      - NEO4J_USER=${NEO4J_USER:-neo4j}
+      - NEO4J_PASSWORD=${NEO4J_PASSWORD:-password123}
+      - LLM_PROVIDER=${LLM_PROVIDER:-ollama}
+      - LLM_MODEL=${LLM_MODEL:-qwen2.5:3b}
+      - OLLAMA_BASE_URL=${OLLAMA_BASE_URL:-http://host.docker.internal:11434}
+
+    ports:
+      - "${STREAMLIT_SERVER_PORT:-8501}:8501"
+
+    depends_on:
+      financial-postgres:
+        condition: service_healthy
+      financial-neo4j:
+        condition: service_healthy
 
 volumes:
   postgres_data:

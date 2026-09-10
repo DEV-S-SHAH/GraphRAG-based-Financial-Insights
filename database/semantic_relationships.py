@@ -151,7 +151,7 @@ def load_relationships():
     driver = create_driver()
 
     print("=" * 80)
-    print("LTM SEMANTIC RELATIONSHIP LOADER")
+    print("FINANCIAL KNOWLEDGE GRAPH: SEMANTIC RELATIONSHIP LOADER")
     print("=" * 80)
 
     with driver.session() as session:
