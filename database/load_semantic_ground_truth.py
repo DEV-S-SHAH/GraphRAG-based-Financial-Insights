@@ -1,6 +1,5 @@
 """
-Load the semantic ground-truth entities + relationships (from
-database/semantic_relationships.py RELATIONSHIPS) into Neo4j.
+Load the semantic ground-truth entities + relationships into Neo4j.
 
 This complements the multi-year loader so that the graph reflects the
 idealized ground-truth semantic graph used by the evaluation framework:
@@ -24,8 +23,6 @@ if str(PROJECT_ROOT) not in sys.path:
 from dotenv import load_dotenv
 from neo4j import GraphDatabase
 
-from database.semantic_relationships import RELATIONSHIPS
-
 load_dotenv(PROJECT_ROOT / ".env")
 
 
@@ -47,6 +44,28 @@ def create_driver():
     print("Neo4j connection successful.")
     return driver
 
+
+# Canonical semantic relationships
+RELATIONSHIPS = [
+    ("AI", "digital transformation", "SUPPORTS"),
+    ("AI platforms", "digital transformation", "ENABLES"),
+    ("ecosystem partnerships", "AI platforms", "SUPPORTS"),
+    ("capability building", "AI platforms", "SUPPORTS"),
+    ("cost optimization", "operational efficiency", "IMPROVES"),
+    ("Fit4Future", "cost optimization", "DRIVES"),
+    ("Fit4Future", "operational efficiency", "IMPROVES"),
+    ("operational efficiency", "ebitda_margin", "SUPPORTS"),
+    ("pyramid optimization", "operating leverage", "IMPROVES"),
+    ("operating leverage", "ebitda_margin", "SUPPORTS"),
+    ("large deal wins", "order_inflow", "INCREASES"),
+    ("client demand", "order_inflow", "SUPPORTS"),
+    ("transformation initiatives", "order_inflow", "SUPPORTS"),
+    ("recurring revenues", "revenue", "SUPPORTS"),
+    ("New Horizons", "Fit4Future", "FOLLOWS"),
+    ("currency risk", "revenue_growth_usd", "IMPACTS"),
+    ("labor codes", "pat_margin", "IMPACTS"),
+    ("capital allocation", "AI platforms", "FUNDS"),
+]
 
 # (name, [labels...], entity_id, entity_type)
 MISSING_ENTITIES = [
