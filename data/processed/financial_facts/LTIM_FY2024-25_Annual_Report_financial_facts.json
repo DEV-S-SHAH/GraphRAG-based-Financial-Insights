@@ -1,0 +1,366 @@
+{
+  "document_id": "LTIM_FY2024-25_Annual_Report",
+  "company": "LTIMindtree Limited",
+  "ticker": "LTIM",
+  "fiscal_year": "FY2024-25",
+  "reporting_period": {
+    "label": "FY2024-25",
+    "start": "2024-04-01",
+    "end": "2025-03-31"
+  },
+  "fact_count": 16,
+  "facts": [
+    {
+      "fact_id": "LTIM_FY2024-25_Annual_Report_revenue_FY2024_25",
+      "metric": "revenue",
+      "value": 380081,
+      "unit": "INR million",
+      "period": {
+        "label": "FY2024-25",
+        "start": "2024-04-01",
+        "end": "2025-03-31"
+      },
+      "company": "LTIMindtree Limited",
+      "ticker": "LTIM",
+      "statement_type": "consolidated",
+      "source": {
+        "document_id": "LTIM_FY2024-25_Annual_Report",
+        "page": 111,
+        "section": "Board's Report - Financial Results"
+      },
+      "verbatim": "380,081",
+      "confidence": 1.0,
+      "extraction_method": "structured_financial"
+    },
+    {
+      "fact_id": "LTIM_FY2024-25_Annual_Report_profit_before_tax_FY2024_25",
+      "metric": "profit_before_tax",
+      "value": 62142,
+      "unit": "INR million",
+      "period": {
+        "label": "FY2024-25",
+        "start": "2024-04-01",
+        "end": "2025-03-31"
+      },
+      "company": "LTIMindtree Limited",
+      "ticker": "LTIM",
+      "statement_type": "consolidated",
+      "source": {
+        "document_id": "LTIM_FY2024-25_Annual_Report",
+        "page": 111,
+        "section": "Board's Report - Financial Results"
+      },
+      "verbatim": "62,142",
+      "confidence": 1.0,
+      "extraction_method": "structured_financial"
+    },
+    {
+      "fact_id": "LTIM_FY2024-25_Annual_Report_profit_after_tax_FY2024_25",
+      "metric": "profit_after_tax",
+      "value": 46020,
+      "unit": "INR million",
+      "period": {
+        "label": "FY2024-25",
+        "start": "2024-04-01",
+        "end": "2025-03-31"
+      },
+      "company": "LTIMindtree Limited",
+      "ticker": "LTIM",
+      "statement_type": "consolidated",
+      "source": {
+        "document_id": "LTIM_FY2024-25_Annual_Report",
+        "page": 111,
+        "section": "Board's Report - Financial Results"
+      },
+      "verbatim": "46,020",
+      "confidence": 1.0,
+      "extraction_method": "structured_financial"
+    },
+    {
+      "fact_id": "LTIM_FY2024-25_Annual_Report_ebitda_FY2024_25",
+      "metric": "ebitda",
+      "value": 64949,
+      "unit": "INR million",
+      "period": {
+        "label": "FY2024-25",
+        "start": "2024-04-01",
+        "end": "2025-03-31"
+      },
+      "company": "LTIMindtree Limited",
+      "ticker": "LTIM",
+      "statement_type": "consolidated",
+      "source": {
+        "document_id": "LTIM_FY2024-25_Annual_Report",
+        "page": 76,
+        "section": "Financial Performance (MDA)"
+      },
+      "verbatim": "64,949",
+      "confidence": 1.0,
+      "extraction_method": "structured_financial"
+    },
+    {
+      "fact_id": "LTIM_FY2024-25_Annual_Report_ebitda_margin_FY2024_25",
+      "metric": "ebitda_margin",
+      "value": 17.1,
+      "unit": "%",
+      "period": {
+        "label": "FY2024-25",
+        "start": "2024-04-01",
+        "end": "2025-03-31"
+      },
+      "company": "LTIMindtree Limited",
+      "ticker": "LTIM",
+      "statement_type": "consolidated",
+      "source": {
+        "document_id": "LTIM_FY2024-25_Annual_Report",
+        "page": 8,
+        "section": "Financial Highlights (CEO)"
+      },
+      "verbatim": "EBITDA margin stood at 17.1%",
+      "confidence": 1.0,
+      "extraction_method": "structured_financial"
+    },
+    {
+      "fact_id": "LTIM_FY2024-25_Annual_Report_pat_margin_FY2024_25",
+      "metric": "pat_margin",
+      "value": 12.1,
+      "unit": "%",
+      "period": {
+        "label": "FY2024-25",
+        "start": "2024-04-01",
+        "end": "2025-03-31"
+      },
+      "company": "LTIMindtree Limited",
+      "ticker": "LTIM",
+      "statement_type": "consolidated",
+      "source": {
+        "document_id": "LTIM_FY2024-25_Annual_Report",
+        "page": 8,
+        "section": "Financial Highlights (CEO)"
+      },
+      "verbatim": "PAT margin was 12.1%",
+      "confidence": 1.0,
+      "extraction_method": "structured_financial"
+    },
+    {
+      "fact_id": "LTIM_FY2024-25_Annual_Report_ebit_FY2024_25",
+      "metric": "ebit",
+      "value": 55034,
+      "unit": "INR million",
+      "period": {
+        "label": "FY2024-25",
+        "start": "2024-04-01",
+        "end": "2025-03-31"
+      },
+      "company": "LTIMindtree Limited",
+      "ticker": "LTIM",
+      "statement_type": "consolidated",
+      "source": {
+        "document_id": "LTIM_FY2024-25_Annual_Report",
+        "page": 76,
+        "section": "Financial Performance (MDA)"
+      },
+      "verbatim": "Earnings before interest and tax (EBIT)",
+      "confidence": 1.0,
+      "extraction_method": "structured_financial"
+    },
+    {
+      "fact_id": "LTIM_FY2024-25_Annual_Report_eps_basic_FY2024_25",
+      "metric": "eps_basic",
+      "value": 155.29,
+      "unit": "INR per share",
+      "period": {
+        "label": "FY2024-25",
+        "start": "2024-04-01",
+        "end": "2025-03-31"
+      },
+      "company": "LTIMindtree Limited",
+      "ticker": "LTIM",
+      "statement_type": "consolidated",
+      "source": {
+        "document_id": "LTIM_FY2024-25_Annual_Report",
+        "page": 23,
+        "section": "Key Performance Indicators"
+      },
+      "verbatim": "155.29",
+      "confidence": 1.0,
+      "extraction_method": "structured_financial"
+    },
+    {
+      "fact_id": "LTIM_FY2024-25_Annual_Report_eps_diluted_FY2024_25",
+      "metric": "eps_diluted",
+      "value": 155.0,
+      "unit": "INR per share",
+      "period": {
+        "label": "FY2024-25",
+        "start": "2024-04-01",
+        "end": "2025-03-31"
+      },
+      "company": "LTIMindtree Limited",
+      "ticker": "LTIM",
+      "statement_type": "consolidated",
+      "source": {
+        "document_id": "LTIM_FY2024-25_Annual_Report",
+        "page": 23,
+        "section": "Key Performance Indicators"
+      },
+      "verbatim": "155.00",
+      "confidence": 1.0,
+      "extraction_method": "structured_financial"
+    },
+    {
+      "fact_id": "LTIM_FY2024-25_Annual_Report_return_on_equity_FY2024_25",
+      "metric": "return_on_equity",
+      "value": 21.5,
+      "unit": "%",
+      "period": {
+        "label": "FY2024-25",
+        "start": "2024-04-01",
+        "end": "2025-03-31"
+      },
+      "company": "LTIMindtree Limited",
+      "ticker": "LTIM",
+      "statement_type": "consolidated",
+      "source": {
+        "document_id": "LTIM_FY2024-25_Annual_Report",
+        "page": 23,
+        "section": "Key Performance Indicators"
+      },
+      "verbatim": "21.5",
+      "confidence": 1.0,
+      "extraction_method": "structured_financial"
+    },
+    {
+      "fact_id": "LTIM_FY2024-25_Annual_Report_employees_FY2024_25",
+      "metric": "employees",
+      "value": 84307,
+      "unit": "employees",
+      "period": {
+        "label": "FY2024-25",
+        "start": "2024-04-01",
+        "end": "2025-03-31"
+      },
+      "company": "LTIMindtree Limited",
+      "ticker": "LTIM",
+      "statement_type": "consolidated",
+      "source": {
+        "document_id": "LTIM_FY2024-25_Annual_Report",
+        "page": 23,
+        "section": "Key Performance Indicators"
+      },
+      "verbatim": "84,307",
+      "confidence": 1.0,
+      "extraction_method": "structured_financial"
+    },
+    {
+      "fact_id": "LTIM_FY2024-25_Annual_Report_net_worth_FY2024_25",
+      "metric": "net_worth",
+      "value": 227115,
+      "unit": "INR million",
+      "period": {
+        "label": "FY2024-25",
+        "start": "2024-04-01",
+        "end": "2025-03-31"
+      },
+      "company": "LTIMindtree Limited",
+      "ticker": "LTIM",
+      "statement_type": "consolidated",
+      "source": {
+        "document_id": "LTIM_FY2024-25_Annual_Report",
+        "page": 23,
+        "section": "Key Performance Indicators"
+      },
+      "verbatim": "227,115",
+      "confidence": 1.0,
+      "extraction_method": "structured_financial"
+    },
+    {
+      "fact_id": "LTIM_FY2024-25_Annual_Report_market_capitalization_FY2024_25",
+      "metric": "market_capitalization",
+      "value": 1330665,
+      "unit": "INR million",
+      "period": {
+        "label": "FY2024-25",
+        "start": "2024-04-01",
+        "end": "2025-03-31"
+      },
+      "company": "LTIMindtree Limited",
+      "ticker": "LTIM",
+      "statement_type": "consolidated",
+      "source": {
+        "document_id": "LTIM_FY2024-25_Annual_Report",
+        "page": 23,
+        "section": "Key Performance Indicators"
+      },
+      "verbatim": "1,330,665",
+      "confidence": 1.0,
+      "extraction_method": "structured_financial"
+    },
+    {
+      "fact_id": "LTIM_FY2024-25_Annual_Report_dividend_paid_FY2024_25",
+      "metric": "dividend_paid",
+      "value": 19246,
+      "unit": "INR million",
+      "period": {
+        "label": "FY2024-25",
+        "start": "2024-04-01",
+        "end": "2025-03-31"
+      },
+      "company": "LTIMindtree Limited",
+      "ticker": "LTIM",
+      "statement_type": "consolidated",
+      "source": {
+        "document_id": "LTIM_FY2024-25_Annual_Report",
+        "page": 23,
+        "section": "Key Performance Indicators"
+      },
+      "verbatim": "19,246",
+      "confidence": 1.0,
+      "extraction_method": "structured_financial"
+    },
+    {
+      "fact_id": "LTIM_FY2024-25_Annual_Report_order_inflow_usd_bn_FY2024_25",
+      "metric": "order_inflow_usd_bn",
+      "value": 5.99,
+      "unit": "USD billion",
+      "period": {
+        "label": "FY2024-25",
+        "start": "2024-04-01",
+        "end": "2025-03-31"
+      },
+      "company": "LTIMindtree Limited",
+      "ticker": "LTIM",
+      "statement_type": "consolidated",
+      "source": {
+        "document_id": "LTIM_FY2024-25_Annual_Report",
+        "page": 8,
+        "section": "Financial Highlights (CEO)"
+      },
+      "verbatim": "5.99",
+      "confidence": 1.0,
+      "extraction_method": "structured_financial"
+    },
+    {
+      "fact_id": "LTIM_FY2024-25_Annual_Report_revenue_usd_bn_FY2024_25",
+      "metric": "revenue_usd_bn",
+      "value": 4.5,
+      "unit": "USD billion",
+      "period": {
+        "label": "FY2024-25",
+        "start": "2024-04-01",
+        "end": "2025-03-31"
+      },
+      "company": "LTIMindtree Limited",
+      "ticker": "LTIM",
+      "statement_type": "consolidated",
+      "source": {
+        "document_id": "LTIM_FY2024-25_Annual_Report",
+        "page": 8,
+        "section": "Financial Highlights (CEO)"
+      },
+      "verbatim": "USD 4.5 Billion",
+      "confidence": 1.0,
+      "extraction_method": "structured_financial"
+    }
+  ]
+}

@@ -1,0 +1,645 @@
+{
+  "document_id": "LTIM_FY2022_23_Annual_Report",
+  "company": "LTIMindtree Limited",
+  "ticker": "LTIM",
+  "fiscal_year": "FY2022-23",
+  "dataset_type": "narrative_entities",
+  "entity_count": 29,
+  "entities": [
+    {
+      "entity_id": "LTIM_business_theme_digital_transformation",
+      "name": "digital transformation",
+      "canonical_name": "digital transformation",
+      "entity_type": "business_theme",
+      "fiscal_year": "FY2022-23",
+      "pages": [
+        11,
+        14,
+        18,
+        21,
+        22,
+        25,
+        26,
+        28,
+        105,
+        116,
+        117,
+        127
+      ],
+      "source": {
+        "document_id": "LTIM_FY2022_23_Annual_Report",
+        "page": 11
+      },
+      "confidence": 1.0
+    },
+    {
+      "entity_id": "LTIM_business_theme_ai",
+      "name": "AI",
+      "canonical_name": "AI",
+      "entity_type": "business_theme",
+      "fiscal_year": "FY2022-23",
+      "pages": [
+        11,
+        20,
+        21,
+        22,
+        23,
+        26,
+        27,
+        35,
+        40,
+        45,
+        60,
+        92
+      ],
+      "source": {
+        "document_id": "LTIM_FY2022_23_Annual_Report",
+        "page": 11
+      },
+      "confidence": 1.0
+    },
+    {
+      "entity_id": "LTIM_business_theme_cost_optimization",
+      "name": "cost optimization",
+      "canonical_name": "cost optimization",
+      "entity_type": "business_theme",
+      "fiscal_year": "FY2022-23",
+      "pages": [
+        22,
+        47,
+        55,
+        64,
+        212
+      ],
+      "source": {
+        "document_id": "LTIM_FY2022_23_Annual_Report",
+        "page": 22
+      },
+      "confidence": 1.0
+    },
+    {
+      "entity_id": "LTIM_business_theme_operational_efficiency",
+      "name": "operational efficiency",
+      "canonical_name": "operational efficiency",
+      "entity_type": "business_theme",
+      "fiscal_year": "FY2022-23",
+      "pages": [
+        23,
+        49,
+        116
+      ],
+      "source": {
+        "document_id": "LTIM_FY2022_23_Annual_Report",
+        "page": 23
+      },
+      "confidence": 1.0
+    },
+    {
+      "entity_id": "LTIM_business_theme_productivity",
+      "name": "productivity",
+      "canonical_name": "productivity",
+      "entity_type": "business_theme",
+      "fiscal_year": "FY2022-23",
+      "pages": [
+        12,
+        22,
+        30,
+        85,
+        87,
+        92,
+        96,
+        126,
+        127,
+        139,
+        191,
+        192
+      ],
+      "source": {
+        "document_id": "LTIM_FY2022_23_Annual_Report",
+        "page": 12
+      },
+      "confidence": 1.0
+    },
+    {
+      "entity_id": "LTIM_business_theme_merger_synergy",
+      "name": "merger synergy",
+      "canonical_name": "merger synergy",
+      "entity_type": "business_theme",
+      "fiscal_year": "FY2022-23",
+      "pages": [
+        3
+      ],
+      "source": {
+        "document_id": "LTIM_FY2022_23_Annual_Report",
+        "page": 3
+      },
+      "confidence": 1.0
+    },
+    {
+      "entity_id": "LTIM_business_theme_profitable_growth",
+      "name": "profitable growth",
+      "canonical_name": "profitable growth",
+      "entity_type": "business_theme",
+      "fiscal_year": "FY2022-23",
+      "pages": [
+        5,
+        8,
+        9,
+        11,
+        13,
+        19,
+        36,
+        58,
+        59,
+        104,
+        120
+      ],
+      "source": {
+        "document_id": "LTIM_FY2022_23_Annual_Report",
+        "page": 5
+      },
+      "confidence": 1.0
+    },
+    {
+      "entity_id": "LTIM_program_large_deals_program",
+      "name": "Large Deals program",
+      "canonical_name": "Large Deals program",
+      "entity_type": "program",
+      "fiscal_year": "FY2022-23",
+      "pages": [
+        11,
+        115,
+        138
+      ],
+      "source": {
+        "document_id": "LTIM_FY2022_23_Annual_Report",
+        "page": 11
+      },
+      "confidence": 1.0
+    },
+    {
+      "entity_id": "LTIM_risk_currency_risk",
+      "name": "currency risk",
+      "canonical_name": "currency risk",
+      "entity_type": "risk",
+      "fiscal_year": "FY2022-23",
+      "pages": [
+        69,
+        302,
+        304,
+        376,
+        378
+      ],
+      "source": {
+        "document_id": "LTIM_FY2022_23_Annual_Report",
+        "page": 69
+      },
+      "confidence": 1.0
+    },
+    {
+      "entity_id": "LTIM_risk_inflation",
+      "name": "inflation",
+      "canonical_name": "inflation",
+      "entity_type": "risk",
+      "fiscal_year": "FY2022-23",
+      "pages": [
+        11,
+        71,
+        111,
+        112,
+        299,
+        372
+      ],
+      "source": {
+        "document_id": "LTIM_FY2022_23_Annual_Report",
+        "page": 11
+      },
+      "confidence": 1.0
+    },
+    {
+      "entity_id": "LTIM_risk_attrition",
+      "name": "attrition",
+      "canonical_name": "attrition",
+      "entity_type": "risk",
+      "fiscal_year": "FY2022-23",
+      "pages": [
+        16,
+        59,
+        68,
+        125,
+        133,
+        138,
+        139,
+        241,
+        298,
+        372
+      ],
+      "source": {
+        "document_id": "LTIM_FY2022_23_Annual_Report",
+        "page": 16
+      },
+      "confidence": 1.0
+    },
+    {
+      "entity_id": "LTIM_risk_discretionary_spending_slowdown",
+      "name": "discretionary spending slowdown",
+      "canonical_name": "discretionary spending slowdown",
+      "entity_type": "risk",
+      "fiscal_year": "FY2022-23",
+      "pages": [
+        112
+      ],
+      "source": {
+        "document_id": "LTIM_FY2022_23_Annual_Report",
+        "page": 112
+      },
+      "confidence": 1.0
+    },
+    {
+      "entity_id": "LTIM_risk_macroeconomic_uncertainty",
+      "name": "macroeconomic uncertainty",
+      "canonical_name": "macroeconomic uncertainty",
+      "entity_type": "risk",
+      "fiscal_year": "FY2022-23",
+      "pages": [
+        9,
+        36,
+        71,
+        111,
+        112,
+        120
+      ],
+      "source": {
+        "document_id": "LTIM_FY2022_23_Annual_Report",
+        "page": 9
+      },
+      "confidence": 1.0
+    },
+    {
+      "entity_id": "LTIM_risk_cyber_risk",
+      "name": "cyber risk",
+      "canonical_name": "cyber risk",
+      "entity_type": "risk",
+      "fiscal_year": "FY2022-23",
+      "pages": [
+        20,
+        28,
+        61,
+        67,
+        69,
+        96,
+        118,
+        143,
+        184,
+        195,
+        207,
+        247
+      ],
+      "source": {
+        "document_id": "LTIM_FY2022_23_Annual_Report",
+        "page": 20
+      },
+      "confidence": 1.0
+    },
+    {
+      "entity_id": "LTIM_capability_cloud",
+      "name": "cloud",
+      "canonical_name": "cloud",
+      "entity_type": "capability",
+      "fiscal_year": "FY2022-23",
+      "pages": [
+        9,
+        19,
+        22,
+        23,
+        25,
+        26,
+        27,
+        28,
+        29,
+        31,
+        34,
+        35
+      ],
+      "source": {
+        "document_id": "LTIM_FY2022_23_Annual_Report",
+        "page": 9
+      },
+      "confidence": 1.0
+    },
+    {
+      "entity_id": "LTIM_capability_data_and_analytics",
+      "name": "data and analytics",
+      "canonical_name": "data and analytics",
+      "entity_type": "capability",
+      "fiscal_year": "FY2022-23",
+      "pages": [
+        21,
+        22,
+        26,
+        86,
+        92,
+        114,
+        126,
+        145,
+        191,
+        192,
+        209,
+        213
+      ],
+      "source": {
+        "document_id": "LTIM_FY2022_23_Annual_Report",
+        "page": 21
+      },
+      "confidence": 1.0
+    },
+    {
+      "entity_id": "LTIM_capability_cybersecurity",
+      "name": "cybersecurity",
+      "canonical_name": "cybersecurity",
+      "entity_type": "capability",
+      "fiscal_year": "FY2022-23",
+      "pages": [
+        20,
+        28,
+        61,
+        67,
+        69,
+        96,
+        118,
+        143,
+        184,
+        195,
+        207,
+        247
+      ],
+      "source": {
+        "document_id": "LTIM_FY2022_23_Annual_Report",
+        "page": 20
+      },
+      "confidence": 1.0
+    },
+    {
+      "entity_id": "LTIM_capability_digital_engineering",
+      "name": "digital engineering",
+      "canonical_name": "digital engineering",
+      "entity_type": "capability",
+      "fiscal_year": "FY2022-23",
+      "pages": [
+        21,
+        27,
+        118,
+        192
+      ],
+      "source": {
+        "document_id": "LTIM_FY2022_23_Annual_Report",
+        "page": 21
+      },
+      "confidence": 1.0
+    },
+    {
+      "entity_id": "LTIM_capability_quality_engineering",
+      "name": "quality engineering",
+      "canonical_name": "quality engineering",
+      "entity_type": "capability",
+      "fiscal_year": "FY2022-23",
+      "pages": [
+        22,
+        212
+      ],
+      "source": {
+        "document_id": "LTIM_FY2022_23_Annual_Report",
+        "page": 22
+      },
+      "confidence": 1.0
+    },
+    {
+      "entity_id": "LTIM_capability_generative_ai",
+      "name": "generative AI",
+      "canonical_name": "generative AI",
+      "entity_type": "capability",
+      "fiscal_year": "FY2022-23",
+      "pages": [
+        11,
+        26,
+        207,
+        208,
+        210,
+        213
+      ],
+      "source": {
+        "document_id": "LTIM_FY2022_23_Annual_Report",
+        "page": 11
+      },
+      "confidence": 1.0
+    },
+    {
+      "entity_id": "LTIM_vertical_banking_and_financial_services",
+      "name": "Banking and Financial Services",
+      "canonical_name": "Banking and Financial Services",
+      "entity_type": "vertical",
+      "fiscal_year": "FY2022-23",
+      "pages": [
+        26,
+        121,
+        123,
+        190,
+        350,
+        387,
+        388
+      ],
+      "source": {
+        "document_id": "LTIM_FY2022_23_Annual_Report",
+        "page": 26
+      },
+      "confidence": 1.0
+    },
+    {
+      "entity_id": "LTIM_vertical_insurance",
+      "name": "Insurance",
+      "canonical_name": "Insurance",
+      "entity_type": "vertical",
+      "fiscal_year": "FY2022-23",
+      "pages": [
+        26,
+        31,
+        50,
+        53,
+        86,
+        107,
+        116,
+        121,
+        123,
+        138,
+        153,
+        160
+      ],
+      "source": {
+        "document_id": "LTIM_FY2022_23_Annual_Report",
+        "page": 26
+      },
+      "confidence": 1.0
+    },
+    {
+      "entity_id": "LTIM_vertical_healthcare_and_life_sciences",
+      "name": "Healthcare and Life Sciences",
+      "canonical_name": "Healthcare and Life Sciences",
+      "entity_type": "vertical",
+      "fiscal_year": "FY2022-23",
+      "pages": [
+        29,
+        31,
+        121,
+        123,
+        350,
+        387,
+        388
+      ],
+      "source": {
+        "document_id": "LTIM_FY2022_23_Annual_Report",
+        "page": 29
+      },
+      "confidence": 1.0
+    },
+    {
+      "entity_id": "LTIM_vertical_manufacturing",
+      "name": "Manufacturing",
+      "canonical_name": "Manufacturing",
+      "entity_type": "vertical",
+      "fiscal_year": "FY2022-23",
+      "pages": [
+        19,
+        28,
+        29,
+        30,
+        31,
+        91,
+        111,
+        115,
+        121,
+        123,
+        132,
+        150
+      ],
+      "source": {
+        "document_id": "LTIM_FY2022_23_Annual_Report",
+        "page": 19
+      },
+      "confidence": 1.0
+    },
+    {
+      "entity_id": "LTIM_vertical_energy_and_utilities",
+      "name": "Energy and Utilities",
+      "canonical_name": "Energy and Utilities",
+      "entity_type": "vertical",
+      "fiscal_year": "FY2022-23",
+      "pages": [
+        24,
+        28,
+        30,
+        60,
+        115,
+        157,
+        209,
+        211
+      ],
+      "source": {
+        "document_id": "LTIM_FY2022_23_Annual_Report",
+        "page": 24
+      },
+      "confidence": 1.0
+    },
+    {
+      "entity_id": "LTIM_geography_north_america",
+      "name": "North America",
+      "canonical_name": "North America",
+      "entity_type": "geography",
+      "fiscal_year": "FY2022-23",
+      "pages": [
+        5,
+        32,
+        43,
+        121,
+        388,
+        392
+      ],
+      "source": {
+        "document_id": "LTIM_FY2022_23_Annual_Report",
+        "page": 5
+      },
+      "confidence": 1.0
+    },
+    {
+      "entity_id": "LTIM_geography_europe",
+      "name": "Europe",
+      "canonical_name": "Europe",
+      "entity_type": "geography",
+      "fiscal_year": "FY2022-23",
+      "pages": [
+        5,
+        33,
+        35,
+        105,
+        111,
+        112,
+        121,
+        125,
+        132,
+        166,
+        191,
+        388
+      ],
+      "source": {
+        "document_id": "LTIM_FY2022_23_Annual_Report",
+        "page": 5
+      },
+      "confidence": 1.0
+    },
+    {
+      "entity_id": "LTIM_geography_india",
+      "name": "India",
+      "canonical_name": "India",
+      "entity_type": "geography",
+      "fiscal_year": "FY2022-23",
+      "pages": [
+        3,
+        5,
+        12,
+        13,
+        15,
+        33,
+        34,
+        38,
+        39,
+        40,
+        41,
+        59
+      ],
+      "source": {
+        "document_id": "LTIM_FY2022_23_Annual_Report",
+        "page": 3
+      },
+      "confidence": 1.0
+    },
+    {
+      "entity_id": "LTIM_geography_rest_of_the_world",
+      "name": "Rest of the World",
+      "canonical_name": "Rest of the World",
+      "entity_type": "geography",
+      "fiscal_year": "FY2022-23",
+      "pages": [
+        5,
+        33,
+        121,
+        132,
+        388,
+        393
+      ],
+      "source": {
+        "document_id": "LTIM_FY2022_23_Annual_Report",
+        "page": 5
+      },
+      "confidence": 1.0
+    }
+  ]
+}

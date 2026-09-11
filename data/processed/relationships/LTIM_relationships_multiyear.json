@@ -1,0 +1,393 @@
+{
+  "company": "LTIMindtree Limited",
+  "ticker": "LTIM",
+  "dataset_type": "grounded_multi_year_relationships",
+  "fiscal_years": [
+    "FY2022-23",
+    "FY2023-24",
+    "FY2024-25",
+    "FY2025-26"
+  ],
+  "relationship_count": 19,
+  "skipped_count": 0,
+  "relationships": [
+    {
+      "relationship_id": "ltim_business_theme_cost_optimization_FY202223_p22_1",
+      "source": {
+        "entity_id": "LTIM_business_theme_cost_optimization",
+        "name": "cost optimization",
+        "entity_type": "business_theme"
+      },
+      "relation": "SUPPORTS",
+      "target": {
+        "entity_id": "LTIM_business_theme_operational_efficiency",
+        "name": "operational efficiency",
+        "entity_type": "business_theme"
+      },
+      "relationship_type": "explicit",
+      "fiscal_year": "FY2022-23",
+      "page": 22,
+      "evidence": "Ournext-generation,AI/ML-ledqualityengineeringplatformwithuniquesolutionsdrivingvalueacrosstechnologieshelptodeliverquality,efficiency,andcostoptimization.",
+      "confidence": 1.0,
+      "company": "LTIMindtree Limited",
+      "ticker": "LTIM"
+    },
+    {
+      "relationship_id": "ltim_capability_quality_engineering_FY202223_p22_2",
+      "source": {
+        "entity_id": "LTIM_capability_quality_engineering",
+        "name": "quality engineering",
+        "entity_type": "capability"
+      },
+      "relation": "CONTRIBUTES_TO",
+      "target": {
+        "entity_id": "LTIM_business_theme_cost_optimization",
+        "name": "cost optimization",
+        "entity_type": "business_theme"
+      },
+      "relationship_type": "explicit",
+      "fiscal_year": "FY2022-23",
+      "page": 22,
+      "evidence": "Ournext-generation,AI/ML-ledqualityengineeringplatformwithuniquesolutionsdrivingvalueacrosstechnologieshelptodeliverquality,efficiency,andcostoptimization.",
+      "confidence": 1.0,
+      "company": "LTIMindtree Limited",
+      "ticker": "LTIM"
+    },
+    {
+      "relationship_id": "ltim_risk_currency_risk_FY202223_p122_1",
+      "source": {
+        "entity_id": "LTIM_risk_currency_risk",
+        "name": "currency risk",
+        "entity_type": "risk"
+      },
+      "relation": "INCREASES",
+      "target": {
+        "entity_id": "LTIM_business_theme_cost_optimization",
+        "name": "cost optimization",
+        "entity_type": "business_theme"
+      },
+      "relationship_type": "explicit",
+      "fiscal_year": "FY2022-23",
+      "page": 122,
+      "evidence": "Sub-contractingexpensesincreasedtoINR28,286MillioninFY23fromINR23,591MillioninFY22,onaccountofanincreaseinsubcontractorrates,headcount,andforeignexchangeimpact.",
+      "confidence": 1.0,
+      "company": "LTIMindtree Limited",
+      "ticker": "LTIM"
+    },
+    {
+      "relationship_id": "ltim_business_theme_merger_synergy_FY202223_p113_1",
+      "source": {
+        "entity_id": "LTIM_business_theme_merger_synergy",
+        "name": "merger synergy",
+        "entity_type": "business_theme"
+      },
+      "relation": "IMPACTS",
+      "target": {
+        "target_metric": "profit_after_tax_margin"
+      },
+      "relationship_type": "inferred",
+      "fiscal_year": "FY2022-23",
+      "page": 113,
+      "evidence": "PATmargincameinat13.3%,comparedto15.1%forFY22.Excludingtheone-offimpactofmerger-relatedintegrationcost,ourEBITandPATmargins",
+      "confidence": 1.0,
+      "company": "LTIMindtree Limited",
+      "ticker": "LTIM"
+    },
+    {
+      "relationship_id": "ltim_risk_inflation_FY202223_p71_1",
+      "source": {
+        "entity_id": "LTIM_risk_inflation",
+        "name": "inflation",
+        "entity_type": "risk"
+      },
+      "relation": "IMPACTS",
+      "target": {
+        "target_metric": "revenue_growth"
+      },
+      "relationship_type": "explicit",
+      "fiscal_year": "FY2022-23",
+      "page": 71,
+      "evidence": "GeopoliticaldisruptionssuchastheRussia-Ukraineconflictandresultantvolatilityintheglobaleconomymayadverselyaffecttheoutlook,causeinflation.Thisinturncanresultinreducedrevenuegrowthopportunitiesthatcanimpactclientspendaswellincreasedcostofdoingbusiness.",
+      "confidence": 1.0,
+      "company": "LTIMindtree Limited",
+      "ticker": "LTIM"
+    },
+    {
+      "relationship_id": "ltim_business_theme_ai_FY202324_p13_1",
+      "source": {
+        "entity_id": "LTIM_business_theme_ai",
+        "name": "AI",
+        "entity_type": "business_theme"
+      },
+      "relation": "SUPPORTS",
+      "target": {
+        "target_metric": "profitability"
+      },
+      "relationship_type": "explicit",
+      "fiscal_year": "FY2023-24",
+      "page": 13,
+      "evidence": "Tailoredforeachcustomer,ourAIprogramsarefocusedonimprovingefficiency,productivity,profitability,whileiterativelyreducingoverheadsandcosts,enablingorganizationstogettothefuture,faster.",
+      "confidence": 1.0,
+      "company": "LTIMindtree Limited",
+      "ticker": "LTIM"
+    },
+    {
+      "relationship_id": "ltim_business_theme_ai_FY202324_p13_2",
+      "source": {
+        "entity_id": "LTIM_business_theme_ai",
+        "name": "AI",
+        "entity_type": "business_theme"
+      },
+      "relation": "SUPPORTS",
+      "target": {
+        "entity_id": "LTIM_business_theme_cost_optimization",
+        "name": "cost optimization",
+        "entity_type": "business_theme"
+      },
+      "relationship_type": "explicit",
+      "fiscal_year": "FY2023-24",
+      "page": 13,
+      "evidence": "Tailoredforeachcustomer,ourAIprogramsarefocusedonimprovingefficiency,productivity,profitability,whileiterativelyreducingoverheadsandcosts",
+      "confidence": 1.0,
+      "company": "LTIMindtree Limited",
+      "ticker": "LTIM"
+    },
+    {
+      "relationship_id": "ltim_risk_inflation_FY202324_p40_1",
+      "source": {
+        "entity_id": "LTIM_risk_inflation",
+        "name": "inflation",
+        "entity_type": "risk"
+      },
+      "relation": "INCREASES",
+      "target": {
+        "entity_id": "LTIM_business_theme_cost_optimization",
+        "name": "cost optimization",
+        "entity_type": "business_theme"
+      },
+      "relationship_type": "explicit",
+      "fiscal_year": "FY2023-24",
+      "page": 40,
+      "evidence": "Thecurrenteconomicinstabilityisdrivinguplaborandoperatingcosts,compoundedbyincreasedpressurefromclientsfordiscountsandpricereductions.Additionally,thereturnoftheworkforcetoofficepremisesmayescalateoperationalcosts,therebyimpactingmargins.",
+      "confidence": 1.0,
+      "company": "LTIMindtree Limited",
+      "ticker": "LTIM"
+    },
+    {
+      "relationship_id": "ltim_risk_inflation_FY202324_p40_2",
+      "source": {
+        "entity_id": "LTIM_risk_inflation",
+        "name": "inflation",
+        "entity_type": "risk"
+      },
+      "relation": "IMPACTS",
+      "target": {
+        "target_metric": "ebitda_margin"
+      },
+      "relationship_type": "explicit",
+      "fiscal_year": "FY2023-24",
+      "page": 40,
+      "evidence": "thereturnoftheworkforcetoofficepremisesmayescalateoperationalcosts,therebyimpactingmargins",
+      "confidence": 1.0,
+      "company": "LTIMindtree Limited",
+      "ticker": "LTIM"
+    },
+    {
+      "relationship_id": "ltim_program_large_deals_program_FY202324_p9_1",
+      "source": {
+        "entity_id": "LTIM_program_large_deals_program",
+        "name": "Large Deals program",
+        "entity_type": "program"
+      },
+      "relation": "DRIVES",
+      "target": {
+        "target_metric": "revenue"
+      },
+      "relationship_type": "explicit",
+      "fiscal_year": "FY2023-24",
+      "page": 9,
+      "evidence": "Wehavebookedourhighest-everorderinflowatUSD5.64Billion,representinga15.7%increaseoverFY23.WereportedstrongFY24results,withrevenuereachingUSD4.3Billion,up4.2%inconstantcurrencyand4.4%inUSDterms.",
+      "confidence": 1.0,
+      "company": "LTIMindtree Limited",
+      "ticker": "LTIM"
+    },
+    {
+      "relationship_id": "ltim_business_theme_cost_optimization_FY202425_p37_1",
+      "source": {
+        "entity_id": "LTIM_business_theme_cost_optimization",
+        "name": "cost optimization",
+        "entity_type": "business_theme"
+      },
+      "relation": "DRIVES",
+      "target": {
+        "target_metric": "ebitda_margin"
+      },
+      "relationship_type": "explicit",
+      "fiscal_year": "FY2024-25",
+      "page": 37,
+      "evidence": "Marginimprovementprogramhasbeeninitiatedandincludes:",
+      "confidence": 1.0,
+      "company": "LTIMindtree Limited",
+      "ticker": "LTIM"
+    },
+    {
+      "relationship_id": "ltim_business_theme_ai_FY202425_p7_1",
+      "source": {
+        "entity_id": "LTIM_business_theme_ai",
+        "name": "AI",
+        "entity_type": "business_theme"
+      },
+      "relation": "ENABLES",
+      "target": {
+        "entity_id": "LTIM_program_large_deals_program",
+        "name": "Large Deals program",
+        "entity_type": "program"
+      },
+      "relationship_type": "explicit",
+      "fiscal_year": "FY2024-25",
+      "page": 7,
+      "evidence": "Ourstrategicfocusonsecuringlarge,high-valuedealshasbeenamplifiedbytheproductivitygainsdrivenbyAI",
+      "confidence": 1.0,
+      "company": "LTIMindtree Limited",
+      "ticker": "LTIM"
+    },
+    {
+      "relationship_id": "ltim_program_large_deals_program_FY202425_p8_1",
+      "source": {
+        "entity_id": "LTIM_program_large_deals_program",
+        "name": "Large Deals program",
+        "entity_type": "program"
+      },
+      "relation": "DRIVES",
+      "target": {
+        "target_metric": "revenue"
+      },
+      "relationship_type": "explicit",
+      "fiscal_year": "FY2024-25",
+      "page": 8,
+      "evidence": "Wehavebookedourhighest-everorderinflowatUSD5.99Billion(FY24:USD5.64Billion),representinga6.1%increaseoverFY24.WereportedstrongFY25results,withrevenuereachingUSD4.5Billion(FY24:USD4.3Billion)",
+      "confidence": 1.0,
+      "company": "LTIMindtree Limited",
+      "ticker": "LTIM"
+    },
+    {
+      "relationship_id": "ltim_program_genai_initiative_FY202425_p8_2",
+      "source": {
+        "entity_id": "LTIM_program_genai_initiative",
+        "name": "GenAI initiative",
+        "entity_type": "program"
+      },
+      "relation": "SUPPORTS",
+      "target": {
+        "entity_id": "LTIM_business_theme_productivity",
+        "name": "productivity",
+        "entity_type": "business_theme"
+      },
+      "relationship_type": "explicit",
+      "fiscal_year": "FY2024-25",
+      "page": 8,
+      "evidence": "Acrossourinternalbusinessfunctions,wekickstartedtheGenerativeAItransformationinitiativeandimplemented25+keyusecasesthatimprovedemployeeexperience,enhancedfunctionalefficiency,anddroveemployeeproductivity.",
+      "confidence": 1.0,
+      "company": "LTIMindtree Limited",
+      "ticker": "LTIM"
+    },
+    {
+      "relationship_id": "ltim_risk_currency_risk_FY202425_p176_1",
+      "source": {
+        "entity_id": "LTIM_risk_currency_risk",
+        "name": "currency risk",
+        "entity_type": "risk"
+      },
+      "relation": "IMPACTS",
+      "target": {
+        "target_metric": "financial_instruments"
+      },
+      "relationship_type": "explicit",
+      "fiscal_year": "FY2024-25",
+      "page": 176,
+      "evidence": "Marketriskistheriskthatthefairvalueorfuturecashflowsofafinancialinstrumentwillfluctuatebecauseofchangesinmarketprices.Suchchangesinthevaluesoffinancialinstrumentsmayresultfromchangesintheforeigncurrencyexchangerates,interestrates,credit,liquidityandothermarketchanges.",
+      "confidence": 1.0,
+      "company": "LTIMindtree Limited",
+      "ticker": "LTIM"
+    },
+    {
+      "relationship_id": "ltim_business_theme_ai_FY202526_p9_1",
+      "source": {
+        "entity_id": "LTIM_business_theme_ai",
+        "name": "AI",
+        "entity_type": "business_theme"
+      },
+      "relation": "SUPPORTS",
+      "target": {
+        "target_metric": "profitability"
+      },
+      "relationship_type": "explicit",
+      "fiscal_year": "FY2025-26",
+      "page": 9,
+      "evidence": "continuousmonitoring,weensureAIdrivesmeasurablevaluewhilemaintainingregulatorycompliance,financialdiscipline,andstakeholdertrust.",
+      "confidence": 1.0,
+      "company": "LTIMindtree Limited",
+      "ticker": "LTIM"
+    },
+    {
+      "relationship_id": "ltim_business_theme_ai_FY202526_p9_2",
+      "source": {
+        "entity_id": "LTIM_business_theme_ai",
+        "name": "AI",
+        "entity_type": "business_theme"
+      },
+      "relation": "SUPPORTS",
+      "target": {
+        "entity_id": "LTIM_business_theme_cost_optimization",
+        "name": "cost optimization",
+        "entity_type": "business_theme"
+      },
+      "relationship_type": "explicit",
+      "fiscal_year": "FY2025-26",
+      "page": 9,
+      "evidence": "continuedfocusonefficiency-ledtransformationandAIinvestmentsacross",
+      "confidence": 1.0,
+      "company": "LTIMindtree Limited",
+      "ticker": "LTIM"
+    },
+    {
+      "relationship_id": "ltim_program_large_deals_program_FY202526_p8_1",
+      "source": {
+        "entity_id": "LTIM_program_large_deals_program",
+        "name": "Large Deals program",
+        "entity_type": "program"
+      },
+      "relation": "DRIVES",
+      "target": {
+        "target_metric": "revenue"
+      },
+      "relationship_type": "explicit",
+      "fiscal_year": "FY2025-26",
+      "page": 8,
+      "evidence": "OrderinflowremainedrobustatUSD6.6Billion(FY25:USD5.99Billion)",
+      "confidence": 1.0,
+      "company": "LTIMindtree Limited",
+      "ticker": "LTIM"
+    },
+    {
+      "relationship_id": "ltim_business_theme_cost_optimization_FY202526_p8_2",
+      "source": {
+        "entity_id": "LTIM_business_theme_cost_optimization",
+        "name": "cost optimization",
+        "entity_type": "business_theme"
+      },
+      "relation": "DRIVES",
+      "target": {
+        "target_metric": "ebitda_margin"
+      },
+      "relationship_type": "explicit",
+      "fiscal_year": "FY2025-26",
+      "page": 8,
+      "evidence": "Costdisciplinehasbeenakeyfocusarea",
+      "confidence": 1.0,
+      "company": "LTIMindtree Limited",
+      "ticker": "LTIM"
+    }
+  ],
+  "skipped": []
+}

@@ -236,7 +236,7 @@ QUESTION:
             "graph_paths": [],
             "citations": citations,
             "latency_breakdown": latencies,
-            "evidence_summary": f"Retrieved {len(chunks)} text chunks from PostgreSQL pgvector using 768-dim cosine similarity.",
+            "evidence_summary": f"Retrieved {len(chunks)} text chunks from PostgreSQL pgvector using {self.embedder.dimension}-dim cosine similarity.",
             "quality_notes": "Vector RAG retrieves relevant document passages, but lacks global multi-year tabular aggregation and cannot reliably connect entity causal chains across pages.",
         }
 

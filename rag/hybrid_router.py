@@ -57,19 +57,30 @@ class RetrievalContext:
 
 
 KNOWN_METRICS = {
-    "revenue": ["revenue", "sales", "turnover", "income from operations"],
-    "ebitda": ["ebitda", "operating profit", "ebitda margin"],
-    "profit_after_tax": ["profit after tax", "pat", "net profit", "net income"],
+    "revenue": ["revenue", "sales", "turnover", "income from operations", "topline"],
+    "ebitda": ["ebitda", "operating profit"],
+    "profit_after_tax": ["profit after tax", "pat", "net profit", "net income", "bottomline"],
     "profit_before_tax": ["profit before tax", "pbt"],
     "earnings_per_share": ["eps", "earnings per share", "diluted eps", "basic eps"],
-    "dividend": ["dividend", "dividend per share"],
-    "headcount": ["employee", "headcount", "workforce", "attrition"],
+    "operating_cash_flow": ["operating cash flow", "cash flow from operations", "cash flow", "free cash flow"],
+    "net_debt": ["net debt", "total debt", "debt", "borrowings", "liabilities"],
+    "net_worth": ["net worth", "total assets", "assets", "shareholders equity", "equity"],
+    "ebitda_margin": ["ebitda margin"],
+    "pat_margin": ["pat margin", "net profit margin", "profit margin", "margin"],
+    "dividend": ["dividend", "dividend per share", "payout"],
+    "headcount": ["employee", "headcount", "workforce", "attrition", "employees"],
 }
 
 KNOWN_ENTITIES = [
     "fit4future", "canvas.ai", "ai", "cloud", "digital transformation",
-    "banking", "bfsi", "hi-tech", "manufacturing", "esg",
-    "cybersecurity", "currency volatility", "talent attrition",
+    "banking", "bfsi", "hi-tech", "manufacturing", "retail", "cpg", "travel",
+    "health & life sciences", "health", "life sciences",
+    "north america", "europe", "india", "rest of the world",
+    "esg", "cybersecurity", "currency volatility", "currency risk",
+    "talent attrition", "talent", "wage inflation", "client concentration",
+    "debashis chatterjee", "vipul chandra", "subrahmanyan", "a.m. naik",
+    "new horizons", "cost optimization", "operational efficiency",
+    "operating leverage", "large deal wins", "order inflow", "pyramid optimization",
 ]
 
 

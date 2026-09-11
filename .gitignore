@@ -1,16 +1,26 @@
+# Python
 __pycache__/
 *.py[cod]
+*$py.class
+*.so
+.pytest_cache/
 
+# Virtual Environments
 .venv/
 venv/
 env/
 
-.pytest_cache/
+# Environment variables & secrets (never commit actual .env)
+.env
+.env.*
+!.env.example
 
+# Raw uploads and temporary pipeline outputs
 data/raw/
-data/processed/
+data/processed/pdf/
 data/graph_viz.html
+lib/
 
+# Logs & OS artifacts
 *.log
-
 .DS_Store

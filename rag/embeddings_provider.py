@@ -42,7 +42,7 @@ class OllamaEmbeddings(EmbeddingsProvider):
         base_url: Optional[str] = None,
         dimension: Optional[int] = None,
     ):
-        model = model_name or os.getenv("EMBEDDING_MODEL", "bge-m3")
+        model = model_name or os.getenv("EMBEDDING_MODEL", "nomic-embed-text")
 
         # Automatically determine embedding dimension based on model
         if dimension is not None:
@@ -52,7 +52,7 @@ class OllamaEmbeddings(EmbeddingsProvider):
         elif "nomic" in model:
             dim = 768
         else:
-            dim = int(os.getenv("EMBEDDING_DIM", "1024"))
+            dim = int(os.getenv("EMBEDDING_DIM", "768"))
 
         super().__init__(model_name=model, dimension=dim)
         self.base_url = (base_url or os.getenv("OLLAMA_BASE_URL", "http://localhost:11434")).rstrip("/")
@@ -137,7 +137,11 @@ def get_embeddings_provider(
     if chosen == "openai":
         try:
             return OpenAIEmbeddings(model_name=model, dimension=dimension)
-        except Exception:
-            return OllamaEmbeddings(model_name=model, dimension=dimension)
+        except Exception as e:
+            logger.warning(f"Failed to initialize OpenAI embeddings ({e}). Falling back to Ollama.")
+            ollama_model = os.getenv("EMBEDDING_MODEL", "nomic-embed-text")
+            if ollama_model.startswith("text-embedding-"):
+                ollama_model = "nomic-embed-text"
+            return OllamaEmbeddings(model_name=ollama_model, dimension=dimension or 768)
 
     return OllamaEmbeddings(model_name=model, dimension=dimension)

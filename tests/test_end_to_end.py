@@ -231,3 +231,110 @@ def test_idempotent_ingestion_duplicate_hash():
     assert len(hash1) == 64
 
 
+def test_postgres_connection_pool():
+    pg = PostgresVectorClient()
+    # Test checking out a connection from pool
+    with pg.get_connection() as conn:
+        with conn.cursor() as cur:
+            cur.execute("SELECT 1;")
+            row = cur.fetchone()
+            assert row[0] == 1
+    # Test close method
+    pg.close()
+
+
+def test_chunk_full_provenance_retention():
+    chunker = SemanticChunker(target_chars=300)
+    mock_doc = {
+        "document_id": "LTIM_FY2023-24_Annual_Report",
+        "company": "LTIMindtree Limited",
+        "ticker": "LTIM",
+        "fiscal_year": "FY2023-24",
+        "source_url": "https://www.ltimindtree.com/annual-reports",
+        "pages": [
+            {
+                "page": 42,
+                "section": "Financial Highlights",
+                "blocks": [{"text": "Consolidated revenue grew by 7.03% to 355,170 INR million."}],
+                "tables": ["| Metric | FY24 |\n|---|---|\n| Revenue | 355,170 |"],
+            }
+        ],
+    }
+    chunks = chunker.chunk_document(mock_doc, source_url=mock_doc["source_url"])
+    assert len(chunks) == 2
+
+    for c in chunks:
+        # Dataclass attributes
+        assert c.chunk_id is not None
+        assert c.document_id == "LTIM_FY2023-24_Annual_Report"
+        assert c.company == "LTIMindtree Limited"
+        assert c.ticker == "LTIM"
+        assert c.fiscal_year == "FY2023-24"
+        assert c.page == 42
+        assert c.section == "Financial Highlights"
+        assert c.source_url == "https://www.ltimindtree.com/annual-reports"
+        # Metadata dictionary
+        meta = c.metadata
+        assert meta["company"] == "LTIMindtree Limited"
+        assert meta["ticker"] == "LTIM"
+        assert meta["fiscal_year"] == "FY2023-24"
+        assert meta["page"] == 42
+        assert meta["section"] == "Financial Highlights"
+        assert meta["source_url"] == "https://www.ltimindtree.com/annual-reports"
+
+
+def test_invalid_and_corrupted_document_handling(tmp_path):
+    from ingestion.docling_parser import DoclingParser
+
+    parser = DoclingParser(use_docling_converter=False)
+
+    # 1. Non-existent file
+    with pytest.raises(FileNotFoundError):
+        parser.parse_pdf(tmp_path / "non_existent.pdf", "DOC_FAIL")
+
+    # 2. Empty 0-byte file
+    empty_file = tmp_path / "empty.pdf"
+    empty_file.write_bytes(b"")
+    with pytest.raises(ValueError, match="0 bytes"):
+        parser.parse_pdf(empty_file, "DOC_EMPTY")
+
+    # 3. Corrupted non-PDF content
+    bad_file = tmp_path / "corrupted.pdf"
+    bad_file.write_text("This is not a valid PDF file format.")
+    with pytest.raises(ValueError, match="Corrupted or unreadable"):
+        parser.parse_pdf(bad_file, "DOC_CORRUPT")
+
+
+def test_llm_missing_api_key_fallback():
+    from rag.llm_provider import get_llm_provider
+
+    # Without API keys, requests for openai or anthropic gracefully fall back to local Ollama
+    p_openai = get_llm_provider(provider="openai")
+    assert p_openai.provider_name == "ollama"
+    assert p_openai.model_name == "qwen2.5:3b"
+
+    p_anthropic = get_llm_provider(provider="anthropic")
+    assert p_anthropic.provider_name == "ollama"
+    assert p_anthropic.model_name == "qwen2.5:3b"
+
+
+def test_vector_retrieval_semantic_accuracy():
+    from rag.embeddings_provider import get_embeddings_provider
+
+    pg = PostgresVectorClient()
+    embedder = get_embeddings_provider()
+
+    # Financial query should match relevant management discussion or KPI chunks
+    query = "What was LTIMindtree revenue and EBITDA in FY2023-24?"
+    query_emb = embedder.embed_query(query)
+
+    results = pg.search_similarity(query_emb, top_k=5, fiscal_year="FY2023-24")
+    assert len(results) > 0
+    top_result = results[0]
+    # Semantic score should be high (> 0.65) with matching embedder
+    assert top_result["score"] > 0.65
+    assert top_result["fiscal_year"] == "FY2023-24"
+    assert len(top_result["text"]) > 20
+    pg.close()
+
+

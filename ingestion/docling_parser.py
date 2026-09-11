@@ -101,6 +101,8 @@ class DoclingParser:
         pdf_path = Path(pdf_path)
         if not pdf_path.exists():
             raise FileNotFoundError(f"PDF file not found: {pdf_path}")
+        if pdf_path.stat().st_size == 0:
+            raise ValueError(f"PDF file is empty (0 bytes): {pdf_path}")
 
         # Try Docling if enabled and small/medium document
         if self._docling_available:
@@ -111,9 +113,13 @@ class DoclingParser:
             except Exception as e:
                 logger.warning(f"Docling parsing encountered error: {e}. Falling back to structured parser.")
 
-        return self._parse_with_structured_mupdf(
-            pdf_path, document_id, company, ticker, fiscal_year, source_url, max_pages
-        )
+        try:
+            return self._parse_with_structured_mupdf(
+                pdf_path, document_id, company, ticker, fiscal_year, source_url, max_pages
+            )
+        except Exception as e:
+            logger.error(f"Structured parser failed on {pdf_path}: {e}")
+            raise ValueError(f"Corrupted or unreadable PDF document {pdf_path}: {e}")
 
     def _parse_with_docling(
         self,

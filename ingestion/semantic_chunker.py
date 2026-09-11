@@ -85,7 +85,17 @@ class SemanticChunker:
                         source_url=source_url,
                         chunk_index=global_index,
                         token_estimate=len(cleaned_table) // 4,
-                        metadata={"is_table": True, "table_index": t_idx},
+                        metadata={
+                            "is_table": True,
+                            "table_index": t_idx,
+                            "document_id": doc_id,
+                            "company": company,
+                            "ticker": ticker,
+                            "fiscal_year": fiscal_year,
+                            "page": page_num,
+                            "section": section,
+                            "source_url": source_url,
+                        },
                     )
                     chunks.append(sc)
                     global_index += 1
@@ -125,7 +135,16 @@ class SemanticChunker:
                         source_url=source_url,
                         chunk_index=global_index,
                         token_estimate=len(text) // 4,
-                        metadata={"is_table": False, "section": section},
+                        metadata={
+                            "is_table": False,
+                            "section": section,
+                            "document_id": doc_id,
+                            "company": company,
+                            "ticker": ticker,
+                            "fiscal_year": fiscal_year,
+                            "page": page_num,
+                            "source_url": source_url,
+                        },
                     )
                     chunks.append(sc)
                     prose_counter += 1

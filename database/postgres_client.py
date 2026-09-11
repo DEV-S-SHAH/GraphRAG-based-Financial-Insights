@@ -8,6 +8,7 @@ Manages:
 - Table inspection and stats
 """
 
+from contextlib import contextmanager
 import json
 import logging
 import os
@@ -15,12 +16,18 @@ from typing import Any, Dict, List, Optional, Tuple
 import psycopg
 from dotenv import load_dotenv
 
+try:
+    from psycopg_pool import ConnectionPool
+    _HAS_POOL = True
+except ImportError:
+    _HAS_POOL = False
+
 load_dotenv()
 logger = logging.getLogger(__name__)
 
 
 class PostgresVectorClient:
-    """PostgreSQL client utilizing pgvector for similarity search."""
+    """PostgreSQL client utilizing pgvector for similarity search with connection pooling."""
 
     def __init__(
         self,
@@ -38,11 +45,31 @@ class PostgresVectorClient:
         self.dbname = dbname or os.getenv("POSTGRES_DB", "financial_db")
         self.user = user or os.getenv("POSTGRES_USER", "financial_user")
         self.password = password or os.getenv("POSTGRES_PASSWORD", "password123")
-        self.dimension = int(dimension or os.getenv("EMBEDDING_DIM", "1024"))
+        self.dimension = int(dimension or os.getenv("EMBEDDING_DIM", "768"))
         self.current_dimension = self.dimension
+        self.pool_min_size = int(os.getenv("POSTGRES_POOL_MIN_SIZE", "1"))
+        self.pool_max_size = int(os.getenv("POSTGRES_POOL_MAX_SIZE", "10"))
+        self._pool = None
+
+        if _HAS_POOL:
+            try:
+                conninfo = (
+                    f"host={self.host} port={self.port} dbname={self.dbname} "
+                    f"user={self.user} password={self.password} connect_timeout=10"
+                )
+                self._pool = ConnectionPool(
+                    conninfo,
+                    min_size=self.pool_min_size,
+                    max_size=self.pool_max_size,
+                    open=True,
+                    kwargs={"autocommit": True},
+                )
+            except Exception as e:
+                logger.warning(f"Could not initialize connection pool: {e}. Using direct connections.")
+
         self._ensure_tables_and_indexes()
 
-    def get_connection(self):
+    def _create_direct_connection(self):
         try:
             return psycopg.connect(
                 host=self.host,
@@ -54,7 +81,6 @@ class PostgresVectorClient:
                 connect_timeout=10,
             )
         except Exception as primary_exc:
-            # Fallback for Windows if connection to 127.0.0.1 or localhost fails
             alt_host = "localhost" if self.host == "127.0.0.1" else "127.0.0.1"
             try:
                 return psycopg.connect(
@@ -68,6 +94,34 @@ class PostgresVectorClient:
                 )
             except Exception:
                 raise primary_exc
+
+    @contextmanager
+    def get_connection(self):
+        """Yield a PostgreSQL connection from the connection pool or a fallback direct connection."""
+        if self._pool is not None:
+            try:
+                with self._pool.connection() as conn:
+                    yield conn
+                    return
+            except Exception as e:
+                logger.debug(f"Pool checkout notice: {e}; using direct connection fallback.")
+        conn = self._create_direct_connection()
+        try:
+            yield conn
+        finally:
+            try:
+                conn.close()
+            except Exception:
+                pass
+
+    def close(self):
+        """Close connection pool and release resources."""
+        if self._pool is not None:
+            try:
+                self._pool.close()
+            except Exception as e:
+                logger.debug(f"Error closing connection pool: {e}")
+            self._pool = None
 
     def _ensure_tables_and_indexes(self):
         """Ensure pgvector extension, vector_chunks table, and HNSW index exist."""
@@ -180,6 +234,15 @@ class PostgresVectorClient:
         metadata: Optional[Dict[str, Any]] = None,
     ):
         """Insert or update a single chunk with its vector embedding."""
+        if len(embedding) != self.current_dimension:
+            logger.warning(
+                f"Embedding vector dimension ({len(embedding)}) differs from table dimension ({self.current_dimension}). Adapting vector."
+            )
+            if len(embedding) > self.current_dimension:
+                embedding = embedding[: self.current_dimension]
+            else:
+                embedding = embedding + [0.0] * (self.current_dimension - len(embedding))
+
         query = """
         INSERT INTO vector_chunks (
             chunk_id, document_id, fiscal_year, page, section,
@@ -224,6 +287,10 @@ class PostgresVectorClient:
         """
         # Adapt query dimension to match table column dimension if needed
         if len(query_embedding) != self.current_dimension:
+            logger.warning(
+                f"Query embedding dimension ({len(query_embedding)}) differs from table dimension ({self.current_dimension}). "
+                "Adapting vector. Ensure EMBEDDING_MODEL and EMBEDDING_DIM match indexed data."
+            )
             if len(query_embedding) > self.current_dimension:
                 query_embedding = query_embedding[: self.current_dimension]
             else:

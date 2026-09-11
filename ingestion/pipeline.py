@@ -122,17 +122,25 @@ class FinancialIngestionPipeline:
 
                 print(f"  [PROCESS] Parsing {doc_meta.title} via Docling...")
                 # 3. Parse with Docling
-                parsed_doc = self.parser.parse_pdf(
-                    pdf_path=local_path,
-                    document_id=doc_meta.document_id,
-                    company=doc_meta.company,
-                    ticker=doc_meta.ticker,
-                    fiscal_year=doc_meta.fiscal_year,
-                    source_url=doc_meta.source_url,
-                )
+                try:
+                    parsed_doc = self.parser.parse_pdf(
+                        pdf_path=local_path,
+                        document_id=doc_meta.document_id,
+                        company=doc_meta.company,
+                        ticker=doc_meta.ticker,
+                        fiscal_year=doc_meta.fiscal_year,
+                        source_url=doc_meta.source_url,
+                    )
+                except Exception as e:
+                    logger.error(f"Error parsing document {doc_meta.document_id}: {e}")
+                    print(f"  [ERROR] Parsing failed for {doc_meta.document_id}: {e}")
+                    continue
 
                 # 4. Semantic Chunking
                 chunks = self.chunker.chunk_document(parsed_doc, source_url=doc_meta.source_url)
+                if not chunks:
+                    print(f"  [WARNING] No chunks extracted from {doc_meta.document_id}, skipping.")
+                    continue
                 print(f"    -> Extracted {len(chunks)} semantic chunks ({len(parsed_doc.tables)} tables)")
 
                 # 5. Insert Document into PostgreSQL
@@ -230,6 +238,17 @@ class FinancialIngestionPipeline:
             embeddings = self.embedder.embed_texts(texts)
 
             for c, emb in zip(chunks_list, embeddings):
+                meta = {
+                    "is_table": c.get("chunk_type") == "table",
+                    "document_id": doc_id,
+                    "company": "LTIMindtree Limited",
+                    "ticker": "LTIM",
+                    "fiscal_year": c.get("fiscal_year", fy),
+                    "page": c.get("page", 1),
+                    "section": c.get("section", ""),
+                    "source_url": c.get("source_url", ""),
+                    "block_indices": c.get("block_indices", []),
+                }
                 self.pg.insert_chunk(
                     chunk_id=c.get("chunk_id", f"{doc_id}_{c.get('page', 1)}"),
                     document_id=doc_id,
@@ -239,7 +258,7 @@ class FinancialIngestionPipeline:
                     chunk_type=c.get("chunk_type", "prose"),
                     text=c.get("text", ""),
                     embedding=emb,
-                    metadata={"block_indices": c.get("block_indices", [])},
+                    metadata=meta,
                 )
 
             results["files_processed"] += 1

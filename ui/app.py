@@ -205,8 +205,11 @@ with st.sidebar:
 
     llm_prov = os.getenv("LLM_PROVIDER", "ollama").upper()
     llm_mod = os.getenv("LLM_MODEL", "qwen2.5:3b")
+    emb_prov = os.getenv("EMBEDDING_PROVIDER", "ollama").upper()
+    emb_mod = os.getenv("EMBEDDING_MODEL", "nomic-embed-text")
+    emb_dim = pg_client.current_dimension if system_ready else int(os.getenv("EMBEDDING_DIM", "768"))
     st.info(f"🤖 LLM: **{llm_prov}** (`{llm_mod}`)")
-    st.info(f"📐 Vectors: **768-dim** (`nomic-embed-text`)")
+    st.info(f"📐 Vectors: **{emb_dim}-dim** (`{emb_mod}`)")
 
     st.divider()
     stats = pg_client.get_stats() if system_ready else {}
@@ -630,12 +633,18 @@ with tabs[3]:
         for e in subgraph["edges"]:
             net.add_edge(e["from"], e["to"], title=e["label"], label=e["label"][:14])
 
-        html_file = PROJECT_ROOT / "data" / "graph_viz.html"
-        html_file.parent.mkdir(parents=True, exist_ok=True)
-        net.save_graph(str(html_file))
-
-        with open(html_file, "r", encoding="utf-8") as f:
-            html_raw = f.read()
+        try:
+            html_raw = net.generate_html()
+        except Exception:
+            html_file = PROJECT_ROOT / "data" / "graph_viz.html"
+            html_file.parent.mkdir(parents=True, exist_ok=True)
+            net.save_graph(str(html_file))
+            with open(html_file, "r", encoding="utf-8") as f:
+                html_raw = f.read()
+            try:
+                html_file.unlink(missing_ok=True)
+            except Exception:
+                pass
 
         components.html(html_raw, height=540)
 
@@ -692,7 +701,7 @@ with tabs[4]:
 with tabs[5]:
     st.markdown('<div class="main-header">📑 Document & Database Explorer</div>', unsafe_allow_html=True)
     st.markdown(
-        '<div class="sub-header">Inspect documents, semantic chunks, JSON metadata, 768-dim embeddings, extracted tables, and PostgreSQL stats.</div>',
+        '<div class="sub-header">Inspect documents, semantic chunks, JSON metadata, vector embeddings, extracted tables, and PostgreSQL stats.</div>',
         unsafe_allow_html=True,
     )
 
